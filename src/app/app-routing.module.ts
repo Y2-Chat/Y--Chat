@@ -6,10 +6,10 @@ import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'userProfile',
+        redirectTo: 'register',
         pathMatch: 'full'
     }, {
-        path: 'userProfile',
+        path: 'register',
         component: RegisterComponent
     }]
 
