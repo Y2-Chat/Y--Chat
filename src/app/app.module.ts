@@ -1,16 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+//Firestore
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
 
+//Components
 import { AppComponent } from './app.component';
-
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firestore)
   ],
   providers: [],
   bootstrap: [AppComponent]
