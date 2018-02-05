@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 
 //Components
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
