@@ -1,4 +1,4 @@
-<!--Start login-->
+<!--Start register-->
 <div class="container-fluid">
   <div id="display" class="row">
     <span class="col-md-3 col-sm-1 col-xs-12">
@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-md-12 line-spacing">
-        <a (click)="register()">New user?</a>
+        <a id="link" (click)="register()">Not yet a user?</a>
       </div>
 
       <!--Email-->
@@ -31,12 +31,10 @@
       </div>
 
       <div class="col-md-12 text-center">
-        <div class="col-md-12 text-center">
-          <button (click)="login()">Login</button>
-          <button (click)="auth.googleLogin()">
-            <i class="fa fa-google"></i>Log In With Google
-          </button>
-        </div>
+        <button (click)="login()">Login</button>
+        <button (click)="auth.googleLogin()">
+          <i class="fa fa-google"></i>Login With Google
+        </button>
       </div>
     </div>
 
@@ -45,4 +43,3 @@
     </span>
   </div>
 </div>
-<!--End login-->

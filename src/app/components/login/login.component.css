@@ -1,0 +1,49 @@
+.display-flex {
+  display: flex;
+}
+
+.middel-text {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.line-spacing {
+  margin-bottom: 20px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin-sides {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#login-panel {
+  padding: 20px;
+  border: 1px solid #CCCCCC;
+  border-radius: 10px;
+}
+
+#header {
+  width: 100%;
+  text-align: center;
+}
+
+#header h2 {
+  font-size: 16px;
+}
+
+#display {
+  padding: 100px 20px;
+}
+
+#link {
+  color: rgb(76, 0, 255);
+}
+
+#link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

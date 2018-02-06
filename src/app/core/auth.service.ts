@@ -19,7 +19,6 @@ export class AuthService {
 
   //Start Google Login
   user: Observable<User>;
-  collectionRef = this.afs.collection("users");
 
   constructor(private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -66,39 +65,46 @@ export class AuthService {
 
     return userRef.set(data);
   }
-
   //End Google Login
 
+  //Start Login
   public fieldLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(success => {
         this.dataService.getData('users', 'uid', '==', success.uid).subscribe(response => {
           this.cacheService.user = response['0'];
-          console.log(response['0']);
+          this.successNavigate();
         })
-        // this.cacheService.user = this.getCurrentUser;
+      }).catch(error => {
+        console.log(error.message)
       })
   }
+  // getCurrentUser() {
+  //   return this.collectionRef.doc(this.afAuth.auth.currentUser.uid).valueChanges();
+  // }
+  //End Login
 
-  getCurrentUser() {
-    return this.collectionRef.doc(this.afAuth.auth.currentUser.uid).valueChanges();
-  }
-
-
+  //Start Register
   public registerUser(email: string, password: string, user: User) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(success => {
-        this.addItem(user)
+        user.uid = this.afAuth.auth.currentUser.uid;
+        this.dataService.pushData("users", this.afAuth.auth.currentUser.uid, user);
+        this.successNavigate();
       }).catch(error => {
-        console.log("Error");
+        if (error === "The email address is already in use by another account.") {
+          alert(error.message)
+        } else {
+          console.log(error.message);
+        }
+
       }
       )
   }
+  //End Registeter
 
-  addItem(user) {
-    user.uid = this.afAuth.auth.currentUser.uid;
-    this.collectionRef.doc(this.afAuth.auth.currentUser.uid)
-      .set(Object.assign({}, user));
+  //Navigate on success
+  successNavigate() {
+    this.router.navigate(["messaging"]);
   }
-
 }
