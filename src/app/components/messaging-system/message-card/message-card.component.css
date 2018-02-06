@@ -1,0 +1,30 @@
+.time-stamp {
+    -webkit-justify-content: flex-end;
+    /* Safari */
+    justify-content: flex-end;
+    text-align: right;
+    width: 100%;
+}
+
+.text-bubble {
+    padding: 20px;
+    padding-top: 5px;
+    border-radius: 7px;
+}
+
+.message-header {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.sender {
+    margin-right: 15px;
+    margin-left: 200px;
+    background-color: rgb(134, 207, 255);
+}
+
+.receiver {
+    margin-left: 15px;
+    margin-right: 200px;
+    background-color: rgb(158, 158, 158);
+}
