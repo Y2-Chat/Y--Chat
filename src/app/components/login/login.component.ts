@@ -8,6 +8,11 @@ import { AuthService } from "../../core/auth.service";
 })
 
 export class LoginComponent {
-
+    email: string;
+    password: string;
     constructor(public auth: AuthService) { }
+
+    login() {
+        this.auth.fieldLogin(this.email, this.password)
+    }
 }

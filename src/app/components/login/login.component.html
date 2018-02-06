@@ -19,7 +19,7 @@
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Email:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" />
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" [(ngModel)]="email" />
       </div>
 
       <!--Password-->
@@ -27,12 +27,12 @@
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Password:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" />
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" [(ngModel)]="password" />
       </div>
 
       <div class="col-md-12 text-center">
         <div class="col-md-12 text-center">
-          <button>Login</button>
+          <button (click)="login()">Login</button>
           <button (click)="auth.googleLogin()">
             <i class="fa fa-google"></i>Log In With Google
           </button>

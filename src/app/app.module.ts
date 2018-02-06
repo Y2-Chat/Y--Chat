@@ -18,13 +18,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { MessagingSystemComponent } from './components/messaging-system/messaging-system.component';
 import { GlobalChatComponent } from './components/messaging-system/global-chat/global-chat.component';
 import { LoginComponent } from './components/login/login.component';
+import { CacheService } from './services/cache.service';
+import { DataService } from './core/data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     MessagingSystemComponent,
-    GlobalChatComponent
+    GlobalChatComponent,
     LoginComponent
   ],
   imports: [
@@ -35,7 +37,9 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [AuthService,
     AngularFireAuth,
-    AngularFirestore],
+    AngularFirestore,
+    CacheService,
+    DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

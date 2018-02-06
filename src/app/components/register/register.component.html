@@ -33,28 +33,43 @@ User logged in
         <h1>Y2-Chat</h1>
       </div>
 
-      <div class="col-md-12 line-spacing">
-        <a (click)="register()">New user?</a>
-      </div>
-
       <!--Email-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
+      <div *ngIf="step === 1" class="col-md-12 row line-spacing no-margin-sides">
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Email:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" />
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" [(ngModel)]="email" />
       </div>
 
       <!--Password-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
+      <div *ngIf="step === 1" class="col-md-12 row line-spacing no-margin-sides">
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Password:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" />
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" [(ngModel)]="password" />
+      </div>
+
+      <!--Confirm password-->
+      <div *ngIf="step === 1" class="col-md-12 row line-spacing no-margin-sides">
+        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+          <label class="middel-text">Confirm Password:</label>
+        </div>
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" [(ngModel)]="confirmPassword" />
+      </div>
+
+      <!--Username-->
+      <div *ngIf="step === 2" class="col-md-12 row line-spacing no-margin-sides">
+        <div class="display-flex col-md-12 col-sm-12 col-xs-12 no-padding line-spacing">
+          <label class="middel-text">Before we continue, what will we be calling you?</label>
+        </div>
+        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+          <label class="middel-text">Username:</label>
+        </div>
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="text" [(ngModel)]="username" />
       </div>
 
       <div class="col-md-12 text-center">
-        <button>Register</button>
+        <button (click)="register()">Register</button>
         <button (click)="auth.googleLogin()">
           <i class="fa fa-google"></i>Register With Google
         </button>
