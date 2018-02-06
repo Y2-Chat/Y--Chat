@@ -1,3 +1,4 @@
+import { User } from './../../../models/user.model';
 import { Message } from './../../../models/message.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,6 +18,14 @@ export class GlobalChatComponent implements OnInit {
     read:false,
     time: new Date()
   };
+
+  user:User ={
+    uid:"string",
+    profilePic:"File",
+    status:"string",
+    username:"string",
+    chatIds:['global-chat']
+  }
 
   ngOnInit() {
   }
