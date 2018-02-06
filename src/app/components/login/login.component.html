@@ -1,27 +1,4 @@
-<!-- <div *ngIf="auth.user | async; then authenticated else guest">
-
-</div>
-
-User not logged in
-<ng-template #guest>
-  <h3>Howdy, Guest</h3>
-  <p>Login to get started...</p>
-
-  <button (click)="auth.googleLogin()">
-    <i class="fa fa-google"></i>Connect With Google
-  </button>
-</ng-template>
-
-User logged in
-<ng-template #authenticated>
-  <div *ngIf="auth.user | async as user">
-    <h3>Howdy {{user.username}}</h3>
-    <img [src]="user.photoUrl" />
-    <p>UID: {{user.uid}}</p>
-  </div>
-</ng-template> -->
-
-<!--Start register-->
+<!--Start login-->
 <div class="container-fluid">
   <div id="display" class="row">
     <span class="col-md-3 col-sm-1 col-xs-12">
@@ -54,13 +31,13 @@ User logged in
       </div>
 
       <div class="col-md-12 text-center">
-        <button>Register</button>
-        <button (click)="auth.googleLogin()">
-          <i class="fa fa-google"></i>Register With Google
-        </button>
+        <div class="col-md-12 text-center">
+          <button>Login</button>
+          <button (click)="auth.googleLogin()">
+            <i class="fa fa-google"></i>Log In With Google
+          </button>
+        </div>
       </div>
-
-
     </div>
 
     <span class="col-md-3 col-sm-1 col-xs-12">
@@ -68,3 +45,4 @@ User logged in
     </span>
   </div>
 </div>
+<!--End login-->
