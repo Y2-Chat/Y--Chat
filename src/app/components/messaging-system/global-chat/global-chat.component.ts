@@ -9,7 +9,7 @@ import { Component, OnInit,ViewChild, ElementRef,AfterViewChecked } from '@angul
 })
 export class GlobalChatComponent implements OnInit,AfterViewChecked {
   @ViewChild('scroll') private scrollRef:ElementRef;
-
+  newMessage:string;
 
   constructor() { }
 
@@ -62,6 +62,10 @@ export class GlobalChatComponent implements OnInit,AfterViewChecked {
 
   ngOnInit() {
     this.scrollToBottom();
+  }
+
+  sendMessage(){
+    console.log(this.newMessage)
   }
 
   ngAfterViewChecked(){

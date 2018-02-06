@@ -10,8 +10,8 @@
     <div class="text-bar">
         <div class="text-center"><span class="icon smile"></span></div>
         <div class="message-area">
-            <textarea class="message form-control" name="" id="" rows="1"></textarea>
+            <textarea [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control" name="" id="" rows="1"></textarea>
         </div>
-        <div class="text-center"> <i class="icon arrow"></i></div>
+        <div class="text-center"><i class="icon arrow" (click)="sendMessage()"></i></div>
     </div>
 </div>

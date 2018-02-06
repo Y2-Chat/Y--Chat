@@ -19,7 +19,7 @@ export class DataService {
       });
   }
 
-  pushData(collection: string, doc: string, data: any) {
+  pushData(collection: string, doc: any, data: any) {
     let collectionRef = this.afs.collection(collection);
 
     collectionRef.doc(doc)
