@@ -1,8 +1,8 @@
 <div class="text-bubble" [ngClass]="true?'sender':'receiver'">
     <div class="message-header">
         <a class="username"><strong>peanut123</strong> </a>
-        <div class="time-stamp"><small><strong>13:30</strong></small></div>
+        <div class="time-stamp"><small><strong>{{message.time|date:'shortTime'}}</strong></small></div>
     </div>
 
-    <div class="body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
+    <div class="body">{{message.body}}</div>
 </div>

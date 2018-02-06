@@ -1,3 +1,4 @@
+import { Message } from './../../../models/message.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class GlobalChatComponent implements OnInit {
 
   constructor() { }
+
+  message:Message = {
+    messageId:'1234',
+    body:'hello world',
+    senderUid:'hey',
+    read:false,
+    time: new Date()
+  };
 
   ngOnInit() {
   }
