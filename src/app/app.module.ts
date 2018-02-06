@@ -17,13 +17,15 @@ import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { MessagingSystemComponent } from './components/messaging-system/messaging-system.component';
 import { GlobalChatComponent } from './components/messaging-system/global-chat/global-chat.component';
+import { MessageCardComponent } from './components/messaging-system/message-card/message-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     MessagingSystemComponent,
-    GlobalChatComponent
+    GlobalChatComponent,
+    MessageCardComponent
   ],
   imports: [
     BrowserModule,

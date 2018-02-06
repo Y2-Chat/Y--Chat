@@ -1,26 +1,16 @@
 <div class="container-fluid p-0 " id="temp">
 
     <div class="chat-area">
-        <div class="notification">1 unread message</div>
+        <div class="notification">1 new message</div>
         <div class="message-span">
-            <div class="text-bubble" [ngClass]="true?'sender':'receiver'">
-                <div class="time-stamp">13:30</div>
-                <div class="body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
-            </div>
-        </div>
-        <div class="message-span">
-            <div class="text-bubble" [ngClass]="false?'sender':'receiver'">
-                <div class="time-stamp">13:30</div>
-                <div class="body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
-            </div>
+            <app-message-card></app-message-card>
         </div>
     </div>
 
     <div class="text-bar">
         <div class="text-center"><span class="icon smile"></span></div>
         <div class="message-area">
-            <input class="message form-control" type="text">
-            <!-- <textarea name="" id="" cols="100" rows="1"></textarea> -->
+            <textarea class="message form-control" name="" id="" rows="1"></textarea>
         </div>
         <div class="text-center"> <i class="icon arrow"></i></div>
     </div>

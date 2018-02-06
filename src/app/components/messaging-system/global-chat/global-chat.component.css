@@ -16,28 +16,6 @@
     margin: 10px;
 }
 
-.time-stamp {
-    text-align: right;
-}
-
-.text-bubble {
-    padding: 20px;
-    padding-top: 10px;
-    border-radius: 7px;
-}
-
-.sender {
-    margin-right: 15px;
-    margin-left: 200px;
-    background-color: rgb(134, 207, 255);
-}
-
-.receiver {
-    margin-left: 15px;
-    margin-right: 200px;
-    background-color: rgb(158, 158, 158);
-}
-
 .text-bar {
     /* margin-top: 4px; */
     /* height: 7vh; */
