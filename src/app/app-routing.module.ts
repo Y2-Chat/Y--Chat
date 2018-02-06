@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessagingSystemComponent } from './components/messaging-system/messaging-system.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -21,8 +22,14 @@ const routes: Routes = [
     {
         path:'messaging',
         component:MessagingSystemComponent
+    } ,
+      {
+        path: ':user_id',
+        component: ProfileComponent
     }
+ 
 ]
+    
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

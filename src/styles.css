@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-
-
-/* import fontawesome from "@fortawesome/fontawesome" */
+html{
+    height: 100vh;
+    width: 100% ;
+    padding: 15px;  
+    position: -ms-page;
+    overflow: auto;
+    /* overflow-x: hidden; */
+}
+*{
+    transition: all 800ms ease;
+   -webkit-transition: all 800ms ease;;
+   -o-transition: all 800ms ease;
+   -ms-transition: all 800ms ease;
+   -moz-transition: all 800ms ease;
+}
