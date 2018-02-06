@@ -110,37 +110,37 @@ export class AuthService {
     this.router.navigate(["/login"]);
   }
 
-  createUser(
-    email: string,
-    password: string,
-    isBusinesses: boolean,
-  ) {
-    let isError: boolean = false;
-    this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(success => {
-        const user: User = {
-          uid: success.uid,
-          profilePic: user.photoURL,//Change to profile pic
-          status: "user.status",
-          username: user.displayName,
-          chatIds: new Array<string>()
-        };
-        this._userService.addItem(user);
-      })
-      .catch(err => {
-        isError = true;
-        if (
-          err.message ===
-          "The email address is already in use by another account."
-        ) {
-          alert(err.message);
-        } else {
-          console.log(err.message);
+  // createUser(
+  //   email: string,
+  //   password: string,
+  //   isBusinesses: boolean,
+  // ) {
+  //   let isError: boolean = false;
+  //   this.afAuth.auth
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then(success => {
+  //       const user: User = {
+  //         uid: success.uid,
+  //         profilePic: user.photoURL,//Change to profile pic
+  //         status: "user.status",
+  //         username: user.displayName,
+  //         chatIds: new Array<string>()
+  //       };
+  //       this._userService.addItem(user);
+  //     })
+  //     .catch(err => {
+  //       isError = true;
+  //       if (
+  //         err.message ===
+  //         "The email address is already in use by another account."
+  //       ) {
+  //         alert(err.message);
+  //       } else {
+  //         console.log(err.message);
 
-        }
-      });
-  }
+  //       }
+  //     });
+  // }
 
   verifyEmail() {
     this.afAuth.auth.currentUser
@@ -160,23 +160,23 @@ export class AuthService {
       )
   }
 
-  isClient() {
-    this._userService.users.subscribe((response: User[]) => {
-      let found = false;
-      for (var i = 0; i < response.length; i++) {
-        if (response[i].id === this.afAuth.auth.currentUser.uid) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        let user: User = {
-          id: this.afAuth.auth.currentUser.uid,
-          isBusiness: false
-        };
-        this._userService.addItem(user);
-      }
-    }
-    )
-  }
+  // isClient() {
+  //   this._userService.users.subscribe((response: User[]) => {
+  //     let found = false;
+  //     for (var i = 0; i < response.length; i++) {
+  //       if (response[i].id === this.afAuth.auth.currentUser.uid) {
+  //         found = true;
+  //         break;
+  //       }
+  //     }
+  //     if (!found) {
+  //       let user: User = {
+  //         id: this.afAuth.auth.currentUser.uid,
+  //         isBusiness: false
+  //       };
+  //       this._userService.addItem(user);
+  //     }
+  //   }
+  //   )
+  // }
 }

@@ -1,0 +1,17 @@
+.chat-selection-tab {
+    text-align: center;
+    background-color: #2374AB;
+    font-size: 60px;
+    display: block;
+}
+
+.chat-selection-tab:selected {
+    background-color: #231651;
+    color: white;
+}
+
+.chat-card-loader {
+    background-color: #231651;
+    color: white;
+    height: 545px;
+}
