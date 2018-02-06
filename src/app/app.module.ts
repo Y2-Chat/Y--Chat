@@ -15,11 +15,20 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { MessagingSystemComponent } from './components/messaging-system/messaging-system.component';
+import { GlobalChatComponent } from './components/messaging-system/global-chat/global-chat.component';
+import { MessageCardComponent } from './components/messaging-system/message-card/message-card.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    MessagingSystemComponent,
+    GlobalChatComponent
+    LoginComponent
+    GlobalChatComponent,
+    MessageCardComponent
   ],
   imports: [
     BrowserModule,
