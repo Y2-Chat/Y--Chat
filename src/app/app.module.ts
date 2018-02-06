@@ -19,6 +19,8 @@ import { MessagingSystemComponent } from './components/messaging-system/messagin
 import { GlobalChatComponent } from './components/messaging-system/global-chat/global-chat.component';
 import { MessageCardComponent } from './components/messaging-system/message-card/message-card.component';
 import { LoginComponent } from './components/login/login.component';
+import { CacheService } from './services/cache.service';
+import { DataService } from './core/data.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [AuthService,
     AngularFireAuth,
-    AngularFirestore],
+    AngularFirestore,
+    CacheService,
+    DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
