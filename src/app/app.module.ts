@@ -28,7 +28,7 @@ import { DataService } from './core/data.service';
     RegisterComponent,
     MessagingSystemComponent,
     GlobalChatComponent,
-    LoginComponent
+    LoginComponent,
     GlobalChatComponent,
     MessageCardComponent
   ],

@@ -38,17 +38,23 @@ export class AuthService {
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    console.log("Log in with google")
     return this.oAuthLogin(provider);
   }
 
   private oAuthLogin(provider) {
+
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        if (credential.uid !== null || credential.uid !== undefined) {
 
-        } else {
+        if (credential.additionalUserInfo.isNewUser) {
           this.updateUserData(credential.user);
+          this.successNavigate();
+        } else {
+          this.successNavigate();
         }
+      }).catch(error => {
+        console.log(error.message);
       })
   }
 
@@ -58,11 +64,12 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       profilePic: user.photoURL,//Change to profile pic
-      status: "user.status",
+      status: "Hi I'm using Y2-Chat",
       username: user.displayName,
       chatIds: new Array<string>()
     }
 
+    console.log(data)
     return userRef.set(data);
   }
   //End Google Login
@@ -97,7 +104,6 @@ export class AuthService {
         } else {
           console.log(error.message);
         }
-
       }
       )
   }
