@@ -1,5 +1,6 @@
 img{ 
-    width: 89%;
+    width: 75%;
+    height:75%;
     box-shadow: 1px 1px 1px 2px #dddada73;
     border-radius: 100%;
     margin-top: 15px;
@@ -34,13 +35,12 @@ img{
      padding: 5px;
      font-size: 10px;   
      font-weight: 350;
-     height: 95px;
      text-overflow: ellipsis;
      overflow-x: hidden;
  }
  b{
      font-weight: 600; 
-     font-size: 12.5px;
+     font-size: 20.5px;
     
  }
  .btn-primary{

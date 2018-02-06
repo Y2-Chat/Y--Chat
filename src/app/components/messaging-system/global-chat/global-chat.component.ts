@@ -21,7 +21,7 @@ export class GlobalChatComponent implements OnInit {
 
   user:User ={
     uid:"string",
-    profilePic:"File",
+    profilePic:"https://loremflickr.com/g/320/240/paris",
     status:"string",
     username:"string",
     chatIds:['global-chat']

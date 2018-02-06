@@ -21,6 +21,7 @@ import { MessageCardComponent } from './components/messaging-system/message-card
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DataService } from './core/data.service';
+import { ViewService } from './core/env-set/view.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DataService } from './core/data.service';
   providers: [AuthService,
     AngularFireAuth,
     AngularFirestore,
-    DataService],
+    DataService,
+    ViewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

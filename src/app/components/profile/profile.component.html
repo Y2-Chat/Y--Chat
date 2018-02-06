@@ -1,10 +1,10 @@
 <div class="container text-center">
     <div class="row box rounded">
        <div class="col-md-6 rounded-left">
-             <img src="https://www.atomix.com.au/media/2015/06/atomix_user31.png" alt=""><br>
+             <img [src]="user.profilePic" [alt]="user.username"><br>
                  <div class="row">
                      <div class="col-md-12 text-center">
-                        <b> {{ 'Username Whatevers' }} <br> </b> <br>
+                        <b> {{ user.username }} <br> </b> <br>
                      </div>
                  </div>
        </div>  
@@ -12,13 +12,13 @@
        <div class="col-md-6 rounded-right align-middle">
             <div class="col-md-12 text-center ">
                 <b> Status </b>
-        <p> {{ 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }} </p>
+        <p> {{ user.status }} </p>
             </div>
             <div class="col-md-12 text-center">
                <div class="row">
                    <div class="col-md-12 text-center">
                       <b> Messages </b><br>
-                         <i> 4365376623 </i>
+                         <i> {{ user.chatIds.length }} </i>
                          <br> <b> Groups </b><br>
                          <i> 344 </i>
                    </div>

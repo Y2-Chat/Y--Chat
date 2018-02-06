@@ -28,3 +28,6 @@
     margin-right: 200px;
     background-color: rgb(158, 158, 158);
 }
+.username{
+    cursor: pointer;
+}
