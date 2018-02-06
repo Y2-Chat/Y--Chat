@@ -15,11 +15,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { GroupChatComponent } from './group-chat/group-chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    GroupChatComponent
   ],
   imports: [
     BrowserModule,
