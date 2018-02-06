@@ -1,8 +1,8 @@
 <div class="container-fluid p-0 " id="temp">
 
-    <div class="chat-area">
-        <div class="notification">1 new message</div>
-        <div class="message-span">
+    <div #scroll class="chat-area">
+        <!-- <div *ngIf="true" class="notification">1 new message</div> -->
+        <div *ngFor="let message of messages" class="message-span">
             <app-message-card [user]='user' [message]="message"></app-message-card>
         </div>
     </div>

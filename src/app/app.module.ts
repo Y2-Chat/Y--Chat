@@ -25,9 +25,8 @@ import { LoginComponent } from './components/login/login.component';
     AppComponent,
     RegisterComponent,
     MessagingSystemComponent,
-    GlobalChatComponent
-    LoginComponent
     GlobalChatComponent,
+    LoginComponent,
     MessageCardComponent
   ],
   imports: [
