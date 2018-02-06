@@ -1,0 +1,84 @@
+.message-span {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.chat-area {
+    /* height: 70vh; */
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.notification {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.time-stamp {
+    text-align: right;
+}
+
+.text-bubble {
+    padding: 20px;
+    padding-top: 10px;
+    border-radius: 7px;
+}
+
+.sender {
+    margin-right: 15px;
+    margin-left: 200px;
+    background-color: rgb(134, 207, 255);
+}
+
+.receiver {
+    margin-left: 15px;
+    margin-right: 200px;
+    background-color: rgb(158, 158, 158);
+}
+
+.text-bar {
+    /* margin-top: 4px; */
+    /* height: 7vh; */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgb(204, 204, 204);
+    padding: 8px;
+    display: flex;
+}
+
+.message-area {
+    width: 100%;
+}
+
+.message {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.icon {
+    margin: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-size: 25px;
+}
+
+.icon:hover {
+    cursor: pointer;
+    color: rgb(66, 167, 255)
+}
+
+.smile::before {
+    font-weight: 300;
+    content: "\f118";
+}
+
+.arrow::before {
+    font-weight: 900;
+    content: "\f124";
+}
+
+#temp {
+    height: calc(100vh - 155px);
+}
