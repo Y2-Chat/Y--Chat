@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DataService } from './core/data.service';
 import { ViewService } from './core/env-set/view.service';
+import { CacheService } from './services/cache.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,6 @@ import { ViewService } from './core/env-set/view.service';
     MessagingSystemComponent,
     GlobalChatComponent,
     LoginComponent,
-    GlobalChatComponent,
     MessageCardComponent,
     ProfileComponent,
   ],
@@ -43,8 +43,9 @@ import { ViewService } from './core/env-set/view.service';
   providers: [AuthService,
     AngularFireAuth,
     AngularFirestore,
-    DataService,
-    ViewService],
+    ViewService
+    CacheService,
+    DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

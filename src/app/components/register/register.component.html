@@ -1,26 +1,3 @@
-<!-- <div *ngIf="auth.user | async; then authenticated else guest">
-
-</div>
-
-User not logged in
-<ng-template #guest>
-  <h3>Howdy, Guest</h3>
-  <p>Login to get started...</p>
-
-  <button (click)="auth.googleLogin()">
-    <i class="fa fa-google"></i>Connect With Google
-  </button>
-</ng-template>
-
-User logged in
-<ng-template #authenticated>
-  <div *ngIf="auth.user | async as user">
-    <h3>Howdy {{user.username}}</h3>
-    <img [src]="user.photoUrl" />
-    <p>UID: {{user.uid}}</p>
-  </div>
-</ng-template> -->
-
 <!--Start register-->
 <div class="container-fluid">
   <div id="display" class="row">
@@ -34,27 +11,62 @@ User logged in
       </div>
 
       <div class="col-md-12 line-spacing">
-        <a (click)="register()">New user?</a>
+        <a id="link" (click)="login()">Already a user?</a>
       </div>
 
       <!--Email-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
+      <div *ngIf="step === 1" class="col-md-12 row line-spacing no-margin-sides">
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Email:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" />
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" [(ngModel)]="email" />
       </div>
 
       <!--Password-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
+      <div [ngClass]="!invalidPasswordLength ? 'line-spacing' : '' " *ngIf="step === 1" class="col-md-12 row no-margin-sides">
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Password:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" />
+        <input [ngClass]="invalidPasswordLength ? 'invalid' : ''" class="form-control col-md-9 col-sm-9 col-xs-12" type="password"
+          [(ngModel)]="password" (input)="checkPasswordLengthOnInput()" (blur)="checkPasswordLengthOnBlur()" />
+      </div>
+
+      <div *ngIf="step === 1 && invalidPasswordLength" class="col-md-12 row line-spacing no-margin-sides error">
+        <span class="col-md-3 col-sm-3 col-xs-12"></span>
+        <div class="col-md-9 col-sm-9 col-xs-12 no-padding">
+          <label class="middel-text">*Passwords must be at least 6 characters long.</label>
+        </div>
+      </div>
+
+      <!--Confirm password-->
+      <div [ngClass]="!invalidConfirmPassword ? 'line-spacing' : '' " *ngIf="step === 1" class="col-md-12 row no-margin-sides">
+        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+          <label class="middel-text">Confirm Password:</label>
+        </div>
+        <input [ngClass]="invalidConfirmPassword ? 'invalid' : ''" class="form-control col-md-9 col-sm-9 col-xs-12" type="password"
+          [(ngModel)]="confirmPassword" (input)="checkPasswordOnInput()" (blur)="checkPasswordOnBlur()" />
+      </div>
+
+      <div *ngIf="step === 1 && invalidConfirmPassword" class="col-md-12 row line-spacing no-margin-sides error">
+        <span class="col-md-3 col-sm-3 col-xs-12"></span>
+        <div class="col-md-9 col-sm-9 col-xs-12 no-padding">
+          <label class="middel-text">*Passwords do not match.</label>
+        </div>
+      </div>
+
+      <!--Username-->
+      <div *ngIf="step === 2" class="col-md-12 row line-spacing no-margin-sides">
+        <div class="display-flex col-md-12 col-sm-12 col-xs-12 no-padding line-spacing">
+          <label class="middel-text">Before we continue, what will we be calling you?</label>
+        </div>
+        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+          <label class="middel-text">Username:</label>
+        </div>
+        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="text" [(ngModel)]="username" />
       </div>
 
       <div class="col-md-12 text-center">
-        <button>Register</button>
+        <button (click)="register()">Register</button>
         <button (click)="auth.googleLogin()">
           <i class="fa fa-google"></i>Register With Google
         </button>
