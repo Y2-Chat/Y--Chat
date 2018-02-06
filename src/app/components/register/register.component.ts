@@ -64,15 +64,17 @@ export class RegisterComponent {
     }
 
     checkPasswordLengthOnInput() {
-        setTimeout(() => {
-            if (this.password.length > 5) {
-                this.invalidPasswordLength = false;
-                return true;
-            } else {
+
+        if (this.password.length > 5) {
+            this.invalidPasswordLength = false;
+            return true;
+        } else {
+            setTimeout(() => {
                 this.invalidPasswordLength = true;
                 return false;
-            }
-        }, 500)
+            }, 500)
+        }
+
     }
 
     checkPasswordLengthOnBlur() {
@@ -86,15 +88,17 @@ export class RegisterComponent {
     }
 
     checkPasswordOnInput() {
-        setTimeout(() => {
-            if (this.password === this.confirmPassword) {
-                this.invalidConfirmPassword = false;
-                return true;
-            } else {
+
+        if (this.password === this.confirmPassword) {
+            this.invalidConfirmPassword = false;
+            return true;
+        } else {
+            setTimeout(() => {
                 this.invalidConfirmPassword = true;
                 return false;
-            }
-        }, 500)
+            }, 500)
+        }
+
     }
 
     checkPasswordOnBlur() {

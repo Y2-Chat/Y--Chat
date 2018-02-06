@@ -23,11 +23,19 @@
       </div>
 
       <!--Password-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
+      <div [ngClass]="!invalidPasswordLength ? 'line-spacing' : '' " class="col-md-12 row no-margin-sides">
         <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
           <label class="middel-text">Password:</label>
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="password" [(ngModel)]="password" />
+        <input [ngClass]="invalidPasswordLength ? 'invalid' : ''" class="form-control col-md-9 col-sm-9 col-xs-12" type="password"
+          [(ngModel)]="password" (input)="checkPasswordLengthOnInput()" (blur)="checkPasswordLengthOnBlur()" />
+      </div>
+
+      <div *ngIf="invalidPasswordLength" class="col-md-12 row line-spacing no-margin-sides error">
+        <span class="col-md-3 col-sm-3 col-xs-12"></span>
+        <div class="col-md-9 col-sm-9 col-xs-12 no-padding">
+          <label class="middel-text">*Passwords must be at least 6 characters long.</label>
+        </div>
       </div>
 
       <div class="col-md-12 text-center">
