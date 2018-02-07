@@ -1,3 +1,4 @@
+import { DataService } from './../../../core/data.service';
 import { User } from './../../../models/user.model';
 import { Message } from './../../../models/message.model';
 import { Component, OnInit,Input } from '@angular/core';
@@ -10,10 +11,17 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class MessageCardComponent implements OnInit {
 @Input() message:Message;
-@Input() user: User
-  constructor() { }
+// @Input() user: User;
+@Input() currentUserID:string;
+sender:User;
+
+  constructor(private dataServ:DataService) { }
 
   ngOnInit() {
+    console.log(this.message)
+    this.dataServ.getData('users','uid','==',this.message.senderUid).subscribe(
+      user=>this.sender=user['0']
+    )
   }
 
   profile(userId){

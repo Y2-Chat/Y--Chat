@@ -1,3 +1,5 @@
+import { User } from './../../models/user.model';
+import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagingSystemComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private authServ: AuthService) { }
+currentUser:User;
   ngOnInit() {
+    this.authServ.getCurrentUser().subscribe(user=>
+      this.currentUser=user['0']
+    );
   }
 
 }

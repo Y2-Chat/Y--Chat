@@ -86,11 +86,11 @@ export class AuthService {
         console.log(error.message)
       })
   }
-  // getCurrentUser() {
-  //   return this.collectionRef.doc(this.afAuth.auth.currentUser.uid).valueChanges();
-  // }
+  
   //End Login
-
+getCurrentUser() {
+    return this.dataService.getData('users','uid','==',this.afAuth.auth.currentUser.uid);
+  }
   //Start Register
   public registerUser(email: string, password: string, user: User) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
