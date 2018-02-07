@@ -50,7 +50,7 @@ export class RegisterComponent {
         if (this.step === 1) {
             this.step = 2;
         } else {
-            if ((this.checkPasswordOnBlur() || this.checkPasswordOnInput()) && (this.checkPasswordLengthOnBlur() || this.checkPasswordLengthOnInput())) {
+            if (this.checkPasswordOnBlur() && this.checkPasswordLengthOnBlur()) {
                 this.user.username = this.username;
                 this.auth.registerUser(this.email, this.password, this.user)
             } else {
@@ -63,19 +63,19 @@ export class RegisterComponent {
         this.router.navigate(["login"]);
     }
 
-    checkPasswordLengthOnInput() {
+    // checkPasswordLengthOnInput() {
 
-        if (this.password.length > 5) {
-            this.invalidPasswordLength = false;
-            return true;
-        } else {
-            setTimeout(() => {
-                this.invalidPasswordLength = true;
-                return false;
-            }, 500)
-        }
+    //     if (this.password.length > 5) {
+    //         this.invalidPasswordLength = false;
+    //         return true;
+    //     } else {
+    //         setTimeout(() => {
+    //             this.invalidPasswordLength = true;
+    //             return false;
+    //         }, 500)
+    //     }
 
-    }
+    // }
 
     checkPasswordLengthOnBlur() {
         if (this.password.length > 5) {
@@ -87,19 +87,19 @@ export class RegisterComponent {
         }
     }
 
-    checkPasswordOnInput() {
+    // checkPasswordOnInput() {
 
-        if (this.password === this.confirmPassword) {
-            this.invalidConfirmPassword = false;
-            return true;
-        } else {
-            setTimeout(() => {
-                this.invalidConfirmPassword = true;
-                return false;
-            }, 500)
-        }
+    //     if (this.password === this.confirmPassword) {
+    //         this.invalidConfirmPassword = false;
+    //         return true;
+    //     } else {
+    //         setTimeout(() => {
+    //             this.invalidConfirmPassword = true;
+    //             return false;
+    //         }, 500)
+    //     }
 
-    }
+    // }
 
     checkPasswordOnBlur() {
         if (this.password === this.confirmPassword) {
