@@ -18,7 +18,7 @@ export class DataService {
 
 
   //this.fireStore.collection('users', ref => ref.where('uid', '==', 'abc'))
-  getData(collection: string, variable: string, operator: any, value: any) {
+  getData(collection: string, variable: string, operator: any, value: any, ) {
     return this.fireStore.collection(collection, ref =>
       ref.where(variable, operator, value))
       .valueChanges().map(response => {
@@ -27,7 +27,7 @@ export class DataService {
   }
 
   pushData(collection: string, doc: string, data: any) {
-    let collectionRef = this.afs.collection(collection);
+    let collectionRef = this.fireStore.collection(collection);
 
     collectionRef.doc(doc)
       .set(Object.assign({}, data));

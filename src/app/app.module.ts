@@ -43,7 +43,7 @@ import { CacheService } from './services/cache.service';
   providers: [AuthService,
     AngularFireAuth,
     AngularFirestore,
-    ViewService
+    ViewService,
     CacheService,
     DataService],
   bootstrap: [AppComponent]
