@@ -22,10 +22,10 @@ import { MessageCardComponent } from './components/messaging-system/message-card
 import { LoginComponent } from './components/login/login.component';
 import { MessageTypeNavigatorComponent } from './components/messaging-system/message-type-navigator/message-type-navigator.component';
 import { GroupChatComponent } from './components/messaging-system/group-chat/group-chat.component';
-import { GlobalChatCardsComponent } from './global-chat-cards/global-chat-cards.component';
-import { GroupChatCardsComponent } from './group-chat-cards/group-chat-cards.component';
-import { DmChatCardsComponent } from './dm-chat-cards/dm-chat-cards.component';
-import { BannerComponent } from './banner/banner.component';
+import { GlobalChatCardsComponent } from './components/messaging-system/message-type-navigator/global-chat-cards/global-chat-cards.component';
+import { GroupChatCardsComponent } from './components/messaging-system/message-type-navigator/group-chat-cards/group-chat-cards.component';
+import { DmChatCardsComponent } from './components/messaging-system/message-type-navigator/dm-chat-cards/dm-chat-cards.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
   declarations: [

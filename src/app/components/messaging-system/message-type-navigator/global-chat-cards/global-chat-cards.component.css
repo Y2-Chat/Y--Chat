@@ -1,0 +1,21 @@
+.y2c-global-card{
+    border-bottom-color: #fff;
+    border-bottom-width: 2px;
+    background-color: #231651;
+    padding: 0px;
+    color: white;
+    height:100px; 
+}
+
+.card-profilepic-placeholder{
+    font-size: 75px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card-header{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    font-size: 20px;
+}

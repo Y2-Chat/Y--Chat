@@ -1,11 +1,14 @@
 .chat-selection-tab {
     text-align: center;
-    background-color: #2374AB;
     font-size: 60px;
     display: block;
+    background-color: #2374AB;
 }
 
-.chat-selection-tab:selected {
+.chat-selection-tab-selected {
+    text-align: center;
+    font-size: 60px;
+    display: block;
     background-color: #231651;
     color: white;
 }
