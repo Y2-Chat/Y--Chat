@@ -18,7 +18,7 @@ sender:User;
   constructor(private dataServ:DataService) { }
 
   ngOnInit() {
-    console.log(this.message)
+    // console.log(this.message)
     this.dataServ.getData('users','uid','==',this.message.senderUid).subscribe(
       user=>this.sender=user['0']
     )

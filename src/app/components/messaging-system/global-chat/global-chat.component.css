@@ -54,6 +54,25 @@
     content: "\f124";
 }
 
+.loading-box {
+    display: flex;
+    height: 100%;
+}
+
+.loader {
+    margin: auto;
+}
+
+.loading {
+    font-size: 50px;
+    margin-top: auto;
+    margin-bottom: auto
+}
+
+.loader-text {
+    padding-top: 10px
+}
+
 #temp {
     height: calc(100vh - 155px);
 }

@@ -17,55 +17,7 @@ export class GlobalChatComponent implements OnInit, AfterViewChecked {
   constructor(private data: DataService) { }
 
   uids: any[]
-
-  messages: Message[] = [];
-
-  // globalChat:Chat = {
-  //   chatId:'Y2-Chat-Global',
-  //   messages:[]
-    
-  // };
-
   globalChat:Chat;
-
-  // any[] = [
-  //   {
-  //     messageId: '1234',
-  //     body: 'hello',
-  //     senderUid: '9gnwRHMWevNL6tJOlFOMHrU0Vnl1',
-  //     read: false,
-  //     time: new Date()
-  //   },
-  //   {
-  //     messageId:'1234',
-  //     body:'sup',
-  //     senderUid:'EuR2fX70PUXMM1GXAGR7TCLtKO42',
-  //     read:false,
-  //     time: new Date()
-  //   },
-  //   {
-  //     messageId:'1234',
-  //     body:'how you been?',
-  //     senderUid:'9gnwRHMWevNL6tJOlFOMHrU0Vnl1',
-  //     read:false,
-  //     time: new Date()
-  //   },
-  //   {
-  //     messageId:'1234',
-  //     body:'good and you:)',
-  //     senderUid:'EuR2fX70PUXMM1GXAGR7TCLtKO42',
-  //     read:false,
-  //     time: new Date()
-  //   }
-  // ]
-
-  user: User = {
-    uid: "string",
-    profilePic: "File",
-    status: "string",
-    username: "string",
-    chatIds: ['global-chat']
-  }
 
 
   ngOnInit() {
@@ -76,9 +28,7 @@ export class GlobalChatComponent implements OnInit, AfterViewChecked {
   getGlobalChatData(){
     this.data.getCollection('global-chat').subscribe(
       response=>{
-        console.log(response['0']);
         this.globalChat = response['0'];
-        console.log(this.globalChat)
       }
     )
   }
@@ -90,17 +40,21 @@ export class GlobalChatComponent implements OnInit, AfterViewChecked {
       read: false,
       time: new Date(),
     }
-
     this.globalChat.messages.push(message)
-
     this.data.pushData('global-chat', 'chat', this.globalChat)
-    console.log(message)
-    // this.messages.push(message)
     this.newMessage = '';
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
+  }
+
+  enter(event){
+    if(event.keyCode == 13){
+      console.log("enter was pressed")
+      this.sendMessage();
+    }
+    
   }
 
   scrollToBottom(): void {
