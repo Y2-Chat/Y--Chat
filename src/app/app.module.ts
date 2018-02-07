@@ -21,6 +21,7 @@ import { MessageCardComponent } from './components/messaging-system/message-card
 import { LoginComponent } from './components/login/login.component';
 import { CacheService } from './services/cache.service';
 import { DataService } from './core/data.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DataService } from './core/data.service';
     GlobalChatComponent,
     LoginComponent,
     GlobalChatComponent,
-    MessageCardComponent
+    MessageCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
