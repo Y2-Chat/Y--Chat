@@ -23,6 +23,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { DataService } from './core/data.service';
 import { ViewService } from './core/env-set/view.service';
 import { CacheService } from './services/cache.service';
+import { AuthGuard } from './core/auth.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { CacheService } from './services/cache.service';
     LoginComponent,
     MessageCardComponent,
     ProfileComponent,
+    GlobalChatComponent,
+    MessageCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,8 @@ import { CacheService } from './services/cache.service';
     AngularFirestore,
     ViewService,
     CacheService,
-    DataService],
+    DataService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

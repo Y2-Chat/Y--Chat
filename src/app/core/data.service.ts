@@ -26,9 +26,16 @@ export class DataService {
       });
   }
 
-  pushData(collection: string, doc: string, data: any) {
-    let collectionRef = this.fireStore.collection(collection);
+  getCollection(collection: string) {
+    return this.fireStore.collection(collection)
+      .valueChanges().map(response => {
+        console.log(response)
+        return response;
+      });
+  }
 
+  pushData(collection: string, doc: any, data: any) {
+    let collectionRef = this.fireStore.collection(collection);
     collectionRef.doc(doc)
       .set(Object.assign({}, data));
   }

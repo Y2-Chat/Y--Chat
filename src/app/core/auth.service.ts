@@ -86,21 +86,24 @@ export class AuthService {
         console.log(error.message)
       })
   }
-  // getCurrentUser() {
-  //   return this.collectionRef.doc(this.afAuth.auth.currentUser.uid).valueChanges();
-  // }
+  
   //End Login
 
-  logout() {
-    this.afAuth.auth.signOut();
-    this.router.navigate(["/login"]);
+  // logout() {
+  //   this.afAuth.auth.signOut();
+  //   this.router.navigate(["/login"]);
+  // }
+getCurrentUser() {
+    return this.dataService.getData('users','uid','==',this.afAuth.auth.currentUser.uid);
   }
   //Start Register
   public registerUser(email: string, password: string, user: User) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(success => {
         user.uid = this.afAuth.auth.currentUser.uid;
+        this.registerToGlobal(user);
         this.dataService.pushData("users", this.afAuth.auth.currentUser.uid, user);
+
         this.successNavigate();
       }).catch(error => {
         if (error === "The email address is already in use by another account.") {
@@ -117,4 +120,14 @@ export class AuthService {
   successNavigate() {
     this.router.navigate(["messaging"]);
   }
+
+  registerToGlobal(user) {
+    console.log("Regiser global")
+    this.dataService.pushData("global-chat", "user", Object.assign({}, user.uid));
+  }
+
+logout(){
+  this.afAuth.auth.signOut();
+}
+
 }
