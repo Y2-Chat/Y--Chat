@@ -1,56 +1,63 @@
+import { Chat } from './../../../models/chat.model';
+import { DataService } from './../../../core/data.service';
 import { User } from './../../../models/user.model';
 import { Message } from './../../../models/message.model';
-import { Component, OnInit,ViewChild, ElementRef,AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, Input } from '@angular/core';
 
 @Component({
   selector: 'app-global-chat',
   templateUrl: './global-chat.component.html',
   styleUrls: ['./global-chat.component.css']
 })
-export class GlobalChatComponent implements OnInit,AfterViewChecked {
-  @ViewChild('scroll') private scrollRef:ElementRef;
-  newMessage:string;
+export class GlobalChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scroll') private scrollRef: ElementRef;
+  @Input() currentUser: User
+  newMessage: string;
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
-  messages: any[] = [
-    {
-      messageId: '1234',
-      body: 'hello',
-      senderUid: 'user1',
-      read: false,
-      time: new Date()
-    },
-    {
-      messageId:'1234',
-      body:'sup',
-      senderUid:'user2',
-      read:false,
-      time: new Date()
-    },
-    {
-      messageId:'1234',
-      body:'how you been?',
-      senderUid:'user1',
-      read:false,
-      time: new Date()
-    },
-    {
-      messageId:'1234',
-      body:'good and you:)',
-      senderUid:'user2',
-      read:false,
-      time: new Date()
-    }
-  ]
+  uids: any[]
 
-  // message: Message = {
-  //   messageId: '1234',
-  //   body: 'hello world',
-  //   senderUid: 'hey',
-  //   read: false,
-  //   time: new Date()
+  messages: Message[] = [];
+
+  // globalChat:Chat = {
+  //   chatId:'Y2-Chat-Global',
+  //   messages:[]
+    
   // };
+
+  globalChat:Chat;
+
+  // any[] = [
+  //   {
+  //     messageId: '1234',
+  //     body: 'hello',
+  //     senderUid: '9gnwRHMWevNL6tJOlFOMHrU0Vnl1',
+  //     read: false,
+  //     time: new Date()
+  //   },
+  //   {
+  //     messageId:'1234',
+  //     body:'sup',
+  //     senderUid:'EuR2fX70PUXMM1GXAGR7TCLtKO42',
+  //     read:false,
+  //     time: new Date()
+  //   },
+  //   {
+  //     messageId:'1234',
+  //     body:'how you been?',
+  //     senderUid:'9gnwRHMWevNL6tJOlFOMHrU0Vnl1',
+  //     read:false,
+  //     time: new Date()
+  //   },
+  //   {
+  //     messageId:'1234',
+  //     body:'good and you:)',
+  //     senderUid:'EuR2fX70PUXMM1GXAGR7TCLtKO42',
+  //     read:false,
+  //     time: new Date()
+  //   }
+  // ]
 
   user: User = {
     uid: "string",
@@ -60,22 +67,46 @@ export class GlobalChatComponent implements OnInit,AfterViewChecked {
     chatIds: ['global-chat']
   }
 
+
   ngOnInit() {
     this.scrollToBottom();
+    this.getGlobalChatData();
   }
 
-  sendMessage(){
-    console.log(this.newMessage)
+  getGlobalChatData(){
+    this.data.getCollection('global-chat').subscribe(
+      response=>{
+        console.log(response['0']);
+        this.globalChat = response['0'];
+        console.log(this.globalChat)
+      }
+    )
   }
 
-  ngAfterViewChecked(){
+  sendMessage() {
+    let message: Message = {
+      body: this.newMessage,
+      senderUid: this.currentUser.uid,
+      read: false,
+      time: new Date(),
+    }
+
+    this.globalChat.messages.push(message)
+
+    this.data.pushData('global-chat', 'chat', this.globalChat)
+    console.log(message)
+    // this.messages.push(message)
+    this.newMessage = '';
+  }
+
+  ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
-  scrollToBottom():void{
-    try{
+  scrollToBottom(): void {
+    try {
       this.scrollRef.nativeElement.scrollTop = this.scrollRef.nativeElement.scrollHeight;
-    }catch(err){
+    } catch (err) {
 
     }
   }

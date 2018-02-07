@@ -1,5 +1,5 @@
 export class Message{
-    messageId:string;
+    // messageId:string;
     body:string;
     senderUid:string;
     read:boolean;
