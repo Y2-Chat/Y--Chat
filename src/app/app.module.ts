@@ -41,6 +41,7 @@ import { BannerComponent } from './components/banner/banner.component';
     GroupChatCardsComponent,
     DmChatCardsComponent,
     BannerComponent
+    GroupChatComponent
   ],
   imports: [
     BrowserModule,
