@@ -17,32 +17,32 @@ export class LoginComponent {
     constructor(public auth: AuthService, private router: Router) { }
 
     login() {
-        this.auth.fieldLogin(this.email, this.password).then(success => {
-            this.router.navigate([""]);
-        }).catch(error => {
-
-        })
-
-
+        if (this.checkPasswordLengthOnBlur) {
+            this.auth.fieldLogin(this.email, this.password).then(success => {
+                this.router.navigate([""]);
+            }).catch(error => {
+                console.log(error.message);
+            })
+        }
     }
 
     register() {
         this.router.navigate(["register"]);
     }
 
-    checkPasswordLengthOnInput() {
+    // checkPasswordLengthOnInput() {
 
-        if (this.password.length > 5) {
-            this.invalidPasswordLength = false;
-            return true;
-        } else {
-            setTimeout(() => {
-                this.invalidPasswordLength = true;
-                return false;
-            }, 500)
-        }
+    //     if (this.password.length > 5) {
+    //         this.invalidPasswordLength = false;
+    //         return true;
+    //     } else {
+    //         setTimeout(() => {
+    //             this.invalidPasswordLength = true;
+    //             return false;
+    //         }, 500)
+    //     }
 
-    }
+    // }
 
     checkPasswordLengthOnBlur() {
         if (this.password.length > 5) {

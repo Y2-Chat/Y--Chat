@@ -22,6 +22,8 @@ import { LoginComponent } from './components/login/login.component';
 import { CacheService } from './services/cache.service';
 import { DataService } from './core/data.service';
 import { AuthGuard } from './core/auth.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AuthGuard } from './core/auth.guard';
     GlobalChatComponent,
     LoginComponent,
     GlobalChatComponent,
-    MessageCardComponent
+    MessageCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
