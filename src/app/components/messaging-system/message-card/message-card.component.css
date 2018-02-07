@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.username:hover {
+    cursor: pointer;
+    color: #0066ffad;
+}
+
 .text-bubble {
     padding: 20px;
     padding-top: 5px;
@@ -27,4 +32,7 @@
     margin-left: 15px;
     margin-right: 200px;
     background-color: rgb(158, 158, 158);
+}
+.username{
+    cursor: pointer;
 }

@@ -26,6 +26,13 @@ import { GlobalChatCardsComponent } from './components/messaging-system/message-
 import { GroupChatCardsComponent } from './components/messaging-system/message-type-navigator/group-chat-cards/group-chat-cards.component';
 import { DmChatCardsComponent } from './components/messaging-system/message-type-navigator/dm-chat-cards/dm-chat-cards.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { DataService } from './core/data.service';
+import { ViewService } from './core/env-set/view.service';
+import { CacheService } from './services/cache.service';
+import { AuthGuard } from './core/auth.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +49,8 @@ import { BannerComponent } from './components/banner/banner.component';
     DmChatCardsComponent,
     BannerComponent
     GroupChatComponent
+    ProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,11 @@ import { BannerComponent } from './components/banner/banner.component';
   ],
   providers: [AuthService,
     AngularFireAuth,
-    AngularFirestore],
+    AngularFirestore,
+    ViewService,
+    CacheService,
+    DataService,
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

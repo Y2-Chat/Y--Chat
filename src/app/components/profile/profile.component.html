@@ -1,0 +1,32 @@
+<div class="container text-center">
+    <div class="row box rounded">
+       <div class="col-md-6 rounded-left">
+             <img [src]="user.profilePic" [alt]="user.username"><br>
+                 <div class="row">
+                     <div class="col-md-12 text-center">
+                        <b> {{ user.username }} <br> </b> <br>
+                     </div>
+                 </div>
+       </div>  
+    <!-- Second Column -->
+       <div class="col-md-6 rounded-right align-middle">
+            <div class="col-md-12 text-center ">
+                <b> Status </b>
+        <p> {{ user.status }} </p>
+            </div>
+            <div class="col-md-12 text-center">
+               <div class="row">
+                   <div class="col-md-12 text-center">
+                      <b> Messages </b><br>
+                         <i> {{ user.chatIds.length }} </i>
+                         <br> <b> Groups </b><br>
+                         <i> 344 </i>
+                   </div>
+               </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-right"><br>
+                <button type="button" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+</div><br>

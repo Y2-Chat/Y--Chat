@@ -8,18 +8,23 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable'
 
 import 'rxjs/add/operator/switchMap';
+
 import { User } from '../models/user.model';
+import { CacheService } from '../services/cache.service';
+import { AngularFireList } from 'angularfire2/database/interfaces';
+import { DataService } from './data.service';
 
 @Injectable()
 export class AuthService {
 
   //Start Google Login
   user: Observable<User>;
-  authState: any = null;
 
   constructor(private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router,
+    private cacheService: CacheService,
+    private dataService: DataService) {
 
     this.user = this.afAuth.authState
       .switchMap(user => {
@@ -29,25 +34,27 @@ export class AuthService {
           return Observable.of(null);
         }
       })
-
-    this.afAuth.authState.subscribe(auth => {
-      this.authState = auth;
-    });
   }
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    console.log("Log in with google")
     return this.oAuthLogin(provider);
   }
 
   private oAuthLogin(provider) {
+
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        if (credential.uid !== null || credential.uid !== undefined) {
 
-        } else {
+        if (credential.additionalUserInfo.isNewUser) {
           this.updateUserData(credential.user);
+          this.successNavigate();
+        } else {
+          this.successNavigate();
         }
+      }).catch(error => {
+        console.log(error.message);
       })
   }
 
@@ -57,126 +64,70 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       profilePic: user.photoURL,//Change to profile pic
-      status: "user.status",
+      status: "Hi I'm using Y2-Chat",
       username: user.displayName,
       chatIds: new Array<string>()
     }
 
+    console.log(data)
     return userRef.set(data);
   }
   //End Google Login
 
-  //Returns true when user is logged in
-  get authenticated(): boolean {
-    return this.authState !== null;
+  //Start Login
+  public fieldLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(success => {
+        this.dataService.getData('users', 'uid', '==', success.uid).subscribe(response => {
+          this.cacheService.user = response['0'];
+          this.successNavigate();
+        })
+      }).catch(error => {
+        console.log(error.message)
+      })
   }
+  
+  //End Login
 
-  //returns current data of user
-  get currentUser(): any {
-    return this.authenticated ? this.authState : null;
-  }
-
-  get currentUserObservable(): any {
-    return this.afAuth.authState;
-  }
-
-  get currentUserId(): string {
-    return this.authenticated ? this.authState.uid : "";
-  }
-
-  login(email: string, password: string) {
-    return this.afAuth.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        //  this.isBusiness(user);
-        this.router.navigate(["/main/dashboard"]);
-      });
-  }
-
-  // googleLogin(): void {
-  //   //validate login
-  //   this.ahnAuth.auth
-  //     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-  //     .then(user => {
-  //       this.isClient();
-  //       this.setIsBusiness();
-  //       this.router.navigate(["/main/dashboard"]);
-  //     });
-  //   //go to next page
+  // logout() {
+  //   this.afAuth.auth.signOut();
+  //   this.router.navigate(["/login"]);
   // }
-
-  logout() {
-    this.afAuth.auth.signOut();
-    this.router.navigate(["/login"]);
+getCurrentUser() {
+    return this.dataService.getData('users','uid','==',this.afAuth.auth.currentUser.uid);
   }
+  //Start Register
+  public registerUser(email: string, password: string, user: User) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then(success => {
+        user.uid = this.afAuth.auth.currentUser.uid;
+        this.registerToGlobal(user);
+        this.dataService.pushData("users", this.afAuth.auth.currentUser.uid, user);
 
-  // createUser(
-  //   email: string,
-  //   password: string,
-  //   isBusinesses: boolean,
-  // ) {
-  //   let isError: boolean = false;
-  //   this.afAuth.auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(success => {
-  //       const user: User = {
-  //         uid: success.uid,
-  //         profilePic: user.photoURL,//Change to profile pic
-  //         status: "user.status",
-  //         username: user.displayName,
-  //         chatIds: new Array<string>()
-  //       };
-  //       this._userService.addItem(user);
-  //     })
-  //     .catch(err => {
-  //       isError = true;
-  //       if (
-  //         err.message ===
-  //         "The email address is already in use by another account."
-  //       ) {
-  //         alert(err.message);
-  //       } else {
-  //         console.log(err.message);
-
-  //       }
-  //     });
-  // }
-
-  verifyEmail() {
-    this.afAuth.auth.currentUser
-      .sendEmailVerification()
-      .then(msg => alert("Password Successfully Reset"))
-      .catch(msg => alert("Password Successfully Reset"));
-  }
-
-  resetPassword(email: string) {
-    this.afAuth.auth
-      .sendPasswordResetEmail(email)
-      .then(() => {
-        alert("Email to reset password was sent");
-        this.router.navigate(["/login"]);
-      }).catch(
-      err => alert(err)
+        this.successNavigate();
+      }).catch(error => {
+        if (error === "The email address is already in use by another account.") {
+          alert(error.message)
+        } else {
+          console.log(error.message);
+        }
+      }
       )
   }
+  //End Registeter
 
-  // isClient() {
-  //   this._userService.users.subscribe((response: User[]) => {
-  //     let found = false;
-  //     for (var i = 0; i < response.length; i++) {
-  //       if (response[i].id === this.afAuth.auth.currentUser.uid) {
-  //         found = true;
-  //         break;
-  //       }
-  //     }
-  //     if (!found) {
-  //       let user: User = {
-  //         id: this.afAuth.auth.currentUser.uid,
-  //         isBusiness: false
-  //       };
-  //       this._userService.addItem(user);
-  //     }
-  //   }
-  //   )
-  // }
+  //Navigate on success
+  successNavigate() {
+    this.router.navigate(["messaging"]);
+  }
+
+  registerToGlobal(user) {
+    console.log("Regiser global")
+    this.dataService.pushData("global-chat", "user", Object.assign({}, user.uid));
+  }
+
+logout(){
+  this.afAuth.auth.signOut();
+}
+
 }
