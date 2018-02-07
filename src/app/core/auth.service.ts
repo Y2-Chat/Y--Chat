@@ -96,7 +96,9 @@ getCurrentUser() {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(success => {
         user.uid = this.afAuth.auth.currentUser.uid;
+        this.registerToGlobal(user);
         this.dataService.pushData("users", this.afAuth.auth.currentUser.uid, user);
+
         this.successNavigate();
       }).catch(error => {
         if (error === "The email address is already in use by another account.") {
@@ -113,4 +115,14 @@ getCurrentUser() {
   successNavigate() {
     this.router.navigate(["messaging"]);
   }
+
+  registerToGlobal(user) {
+    console.log("Regiser global")
+    this.dataService.pushData("global-chat", "user", Object.assign({}, user.uid));
+  }
+
+logout(){
+  this.afAuth.auth.signOut();
+}
+
 }
