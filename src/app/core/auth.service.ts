@@ -128,12 +128,12 @@ export class AuthService {
   }
 
   logout() {
-    console.log("Logout");
-    this.afAuth.auth.signOut().then(success => {
-      this.router.navigate(['login']);
-    }).catch(error => {
-      console.log(error.message);
-    });
+    if (confirm("Continue with logout?")) {
+      this.afAuth.auth.signOut().then(success => {
+        this.router.navigate(['login']);
+      }).catch(error => {
+        console.log(error.message);
+      });
+    }
   }
-
 }
