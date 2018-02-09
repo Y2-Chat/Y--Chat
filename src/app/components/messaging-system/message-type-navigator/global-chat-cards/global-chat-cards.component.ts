@@ -9,6 +9,7 @@ import { CacheService } from '../../../../services/cache.service';
   styleUrls: ['./global-chat-cards.component.css']
 })
 export class GlobalChatCardsComponent implements OnInit {
+
   users: User[];
 
   constructor(
@@ -17,6 +18,6 @@ export class GlobalChatCardsComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
 
+  }
 }

@@ -8,6 +8,7 @@ import { CacheService } from '../../../services/cache.service';
   styleUrls: ['./message-type-navigator.component.css']
 })
 export class MessageTypeNavigatorComponent implements OnInit {
+
   users: User[];
   selected: string = "global";
 

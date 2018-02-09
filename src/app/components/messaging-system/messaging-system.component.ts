@@ -1,3 +1,4 @@
+import { DataService } from './../../core/data.service';
 import { User } from './../../models/user.model';
 import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -33,5 +34,4 @@ export class MessagingSystemComponent implements OnInit {
         this.cache.users = users as User[];
       })
   }
-
 }
