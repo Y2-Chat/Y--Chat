@@ -1,13 +1,25 @@
-.y2c-global-card{
+.y2c-global-card {
     border-bottom-color: #fff;
     border-bottom-width: 2px;
     background-color: #231651;
     padding: 0px;
     color: white;
-    height:100px; 
+    height: 100px;
+    display: flex;
 }
 
-.card-profilepic-placeholder{
+.y2c-global-card:hover {
+    background-color: #301f6e
+}
+
+.profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+
+/* .card-profilepic-placeholder{
     font-size: 75px;
     margin-top: auto;
     margin-bottom: auto;
@@ -18,4 +30,4 @@
     margin-bottom: auto;
     margin-left: 10px;
     font-size: 20px;
-}
+} */

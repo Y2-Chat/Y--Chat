@@ -2,7 +2,7 @@
     <div class="row">
         <app-banner class="col-md-12 p-0"></app-banner>
         <div class="col-md-3 p-0">
-            <app-message-type-navigator></app-message-type-navigator>
+            <app-message-type-navigator [allUsers]='users'></app-message-type-navigator>
         </div>
         <div class="col-md-9 p-0">
             <app-global-chat *ngIf="true" [currentUser]='currentUser'></app-global-chat>
