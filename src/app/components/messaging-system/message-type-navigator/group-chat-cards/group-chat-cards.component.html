@@ -1,8 +1,9 @@
-<div *ngFor="let u of users " class="row col-md-12 y2c-global-card">
-    <span class="fas fa-user card-profilepic-placeholder"></span>
-    <span class="card-header">{{u.username}}</span>
-  </div>
-  <div class="row col-md-12 y2c-global-card">
-    <span class="fas fa-plus-circle card-profilepic-placeholder"></span>
-    <span class="card-header">Start New Group chat</span>
-  </div>
+<div *ngFor="let user of users " class="row col-md-12 y2c-global-card" (click)="addMemberToGroup(user)">
+  <span class="fas fa-user card-profilepic-placeholder"></span>
+  <span class="card-header">{{user.username}}</span>
+</div>
+
+<div class="row col-md-12 y2c-global-card" (click)="createGroup()">
+  <span class="fas fa-plus-circle card-profilepic-placeholder"></span>
+  <span class="card-header">Start New Group chat</span>
+</div>
