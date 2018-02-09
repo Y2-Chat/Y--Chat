@@ -13,6 +13,7 @@ import { User } from '../models/user.model';
 import { CacheService } from '../services/cache.service';
 import { AngularFireList } from 'angularfire2/database/interfaces';
 import { DataService } from './data.service';
+import { log } from 'util';
 
 @Injectable()
 export class AuthService {
@@ -86,15 +87,15 @@ export class AuthService {
         console.log(error.message)
       })
   }
-  
+
   //End Login
 
   // logout() {
   //   this.afAuth.auth.signOut();
   //   this.router.navigate(["/login"]);
   // }
-getCurrentUser() {
-    return this.dataService.getData('users','uid','==',this.afAuth.auth.currentUser.uid);
+  getCurrentUser() {
+    return this.dataService.getData('users', 'uid', '==', this.afAuth.auth.currentUser.uid);
   }
   //Start Register
   public registerUser(email: string, password: string, user: User) {
@@ -126,8 +127,13 @@ getCurrentUser() {
     this.dataService.pushData("global-chat", "user", Object.assign({}, user.uid));
   }
 
-logout(){
-  this.afAuth.auth.signOut();
-}
-
+  logout() {
+    if (confirm("Continue with logout?")) {
+      this.afAuth.auth.signOut().then(success => {
+        this.router.navigate(['login']);
+      }).catch(error => {
+        console.log(error.message);
+      });
+    }
+  }
 }
