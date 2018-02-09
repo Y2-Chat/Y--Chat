@@ -25,7 +25,7 @@ export class MessagingSystemComponent implements OnInit {
     this.data.getCollection('users').subscribe(users => {
       // console.log(users[0]);
       this.users = users as User[];
-      console.log(this.users)
+      // console.log(this.users)
     })
   }
 
