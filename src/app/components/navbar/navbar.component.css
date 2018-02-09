@@ -1,3 +1,7 @@
 .navbar {
   height: 100px;
 }
+
+li a {
+  cursor: pointer;
+}
