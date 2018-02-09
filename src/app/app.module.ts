@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup } from "@angular/forms";
@@ -19,6 +20,12 @@ import { MessagingSystemComponent } from './components/messaging-system/messagin
 import { GlobalChatComponent } from './components/messaging-system/global-chat/global-chat.component';
 import { MessageCardComponent } from './components/messaging-system/message-card/message-card.component';
 import { LoginComponent } from './components/login/login.component';
+import { MessageTypeNavigatorComponent } from './components/messaging-system/message-type-navigator/message-type-navigator.component';
+import { GroupChatComponent } from './components/messaging-system/group-chat/group-chat.component';
+import { GlobalChatCardsComponent } from './components/messaging-system/message-type-navigator/global-chat-cards/global-chat-cards.component';
+import { GroupChatCardsComponent } from './components/messaging-system/message-type-navigator/group-chat-cards/group-chat-cards.component';
+import { DmChatCardsComponent } from './components/messaging-system/message-type-navigator/dm-chat-cards/dm-chat-cards.component';
+import { BannerComponent } from './components/banner/banner.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DataService } from './core/data.service';
 import { ViewService } from './core/env-set/view.service';
@@ -34,11 +41,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MessagingSystemComponent,
     GlobalChatComponent,
     LoginComponent,
-    MessageCardComponent,
-    ProfileComponent,
     GlobalChatComponent,
     MessageCardComponent,
-    NavbarComponent
+    MessageTypeNavigatorComponent,
+    GlobalChatCardsComponent,
+    GroupChatCardsComponent,
+    DmChatCardsComponent,
+    BannerComponent,
+    GroupChatComponent,
+    ProfileComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
