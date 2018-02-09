@@ -4,30 +4,40 @@
     background-color: #231651;
     padding: 0px;
     color: white;
-    height: 100px;
+    height: 80px;
+    display: flex
+}
+
+.profile-pic {
     display: flex;
 }
 
 .y2c-global-card:hover {
-    background-color: #301f6e
+    background-color: #301f6e;
+    cursor: pointer;
 }
 
-.profile-pic {
+.pic {
+    margin-top: auto;
+    margin-bottom: auto;
     height: 50px;
     width: 50px;
     border-radius: 50%;
 }
 
-
-/* .card-profilepic-placeholder{
-    font-size: 75px;
+.user-text {
+    padding: 10px;
+    margin-left: 10px;
     margin-top: auto;
     margin-bottom: auto;
 }
 
-.card-header{
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
-    font-size: 20px;
-} */
+.username {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.status {
+    font-size: 14px;
+    font-weight: 300;
+}
