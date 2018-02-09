@@ -7,14 +7,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class DataService {
 
-  constructor(private fireStore:AngularFirestore , private afAuth: AngularFireAuth) { 
-   setTimeout(()=>{
+  constructor(private fireStore: AngularFirestore, private afAuth: AngularFireAuth) {
+    setTimeout(() => {
       this.userData()
-   });  1000 }
- 
-  profilesCollection:AngularFirestoreCollection<User>;
-  profiles:Observable<User[]>;
-  users:User[] = [];
+    }); 1000
+  }
+
+  profilesCollection: AngularFirestoreCollection<User>;
+  profiles: Observable<User[]>;
+  users: User[] = [];
 
 
   //this.fireStore.collection('users', ref => ref.where('uid', '==', 'abc'))
@@ -39,24 +40,31 @@ export class DataService {
     collectionRef.doc(doc)
       .set(Object.assign({}, data));
   }
-  getProfile(uid:string):User{
-    let user:User;
-    for( let i = 0 ; i < this.users.length ; i++ ){
-          user = this.users[i];
-          console.log( user );
-          if( user.uid === uid ) return user ; 
+
+  addChat(collection: string, data: any) {
+    let collectionRef = this.fireStore.collection(collection);
+
+    collectionRef.add(Object.assign({}, data));
+  }
+
+  getProfile(uid: string): User {
+    let user: User;
+    for (let i = 0; i < this.users.length; i++) {
+      user = this.users[i];
+      console.log(user);
+      if (user.uid === uid) return user;
     }
   }
 
- userData(){
-  this.profilesCollection = this.fireStore.collection('users');
-  this.profiles = this.profilesCollection.valueChanges();
-  this.profiles.subscribe(users=>{
-   for( let i = 0 ; i < users.length ; i++ ){
-       let user:User = users[i];
-  this.users.push(user);
-    }
-  });
- }
+  userData() {
+    this.profilesCollection = this.fireStore.collection('users');
+    this.profiles = this.profilesCollection.valueChanges();
+    this.profiles.subscribe(users => {
+      for (let i = 0; i < users.length; i++) {
+        let user: User = users[i];
+        this.users.push(user);
+      }
+    });
+  }
 
 }

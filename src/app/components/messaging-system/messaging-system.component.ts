@@ -1,6 +1,7 @@
 import { User } from './../../models/user.model';
 import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { CacheService } from '../../services/cache.service';
 
 @Component({
   selector: 'app-messaging-system',
@@ -9,12 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagingSystemComponent implements OnInit {
 
-  constructor(private authServ: AuthService) { }
-currentUser:User;
+  constructor(
+    private authServ: AuthService,
+    private data: DataService,
+    private cache: CacheService) { }
+
+  currentUser: User;
+  users: User[];
+
   ngOnInit() {
     this.authServ.getCurrentUser().subscribe(user=>
       this.currentUser=user['0']
     );
+  }
+
+  getUsers() {
+    this.data.getCollection('users')
+      .subscribe(users => {
+        this.cache.users = users as User[];
+      })
   }
 
 }
