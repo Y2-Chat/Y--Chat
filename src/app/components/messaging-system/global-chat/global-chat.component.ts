@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, Input } fro
 @Component({
   selector: 'app-global-chat',
   templateUrl: './global-chat.component.html',
-  styleUrls: ['./global-chat.component.css']
+  styleUrls: ['./global-chat.component.css','../../../../assets/css/mainStyle.css']
 })
 export class GlobalChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('scroll') private scrollRef: ElementRef;
