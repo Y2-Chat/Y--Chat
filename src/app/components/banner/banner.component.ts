@@ -7,19 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  dropDownVisibility: boolean = false;
+  // dropDownVisibility: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  switchVisibilty(){
-    if(this.dropDownVisibility === true){
-      this.dropDownVisibility = false;
-    } else if(this.dropDownVisibility===false){
-      this.dropDownVisibility = true;
-    }
-  }
+  // switchVisibilty(){
+  //   if(this.dropDownVisibility === true){
+  //     this.dropDownVisibility = false;
+  //   } else if(this.dropDownVisibility===false){
+  //     this.dropDownVisibility = true;
+  //   }
+  // }
 
 }

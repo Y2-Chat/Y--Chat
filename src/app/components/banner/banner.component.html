@@ -3,12 +3,15 @@
     Y2-Chat
   </div>
 
-  <div>
-    <span class="fas fa-ellipsis-v dropdown" (click)="switchVisibility()">
-      <div *ngIf="dropDownVisibility">
-        <span class="fas fa-user"></span>
+  <div class="dropdown">
+    <span class="fas fa-ellipsis-v "></span>
+    <div class="dropdown-content">
+      <span class="fas fa-user dropdown-pfpic"></span>
+      view profile
+      <hr>
+      <span class="fas fa-cog"> </span>settings <br>
+      logout <br>
 
-      </div>
-    </span>
+    </div>
   </div>
 </div>
