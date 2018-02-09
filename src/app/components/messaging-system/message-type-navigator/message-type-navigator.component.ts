@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { User } from './../../../models/user.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-message-type-navigator',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-type-navigator.component.css']
 })
 export class MessageTypeNavigatorComponent implements OnInit {
-
+  @Input() allUsers:User[];
   selected: string = "global";
 
   constructor() { }
