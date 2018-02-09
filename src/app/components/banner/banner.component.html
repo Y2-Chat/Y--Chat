@@ -3,14 +3,23 @@
     Y2-Chat
   </div>
 
-  <div class="dropdown">
-    <span class="fas fa-ellipsis-v "></span>
+  <div class="dropdown ">
+    <span class="fas fa-ellipsis-v dropdown-menu-button"></span>
     <div class="dropdown-content">
       <span class="fas fa-user dropdown-pfpic"></span>
-      view profile
+      <br>
+      <div class="dropdown-text">view profile</div> 
+      
       <hr>
-      <span class="fas fa-cog"> </span>settings <br>
-      logout <br>
+      <div class="dropdown-text">
+        <span class="fas fa-cog"></span> settings
+        <br>
+      </div>
+      <div class="dropdown-text" (click)="logout()">
+        <span class="fas fa-power-off"></span> logout
+        <br>
+      </div>
+
 
     </div>
   </div>
