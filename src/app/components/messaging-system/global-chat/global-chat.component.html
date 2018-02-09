@@ -1,4 +1,13 @@
 <div class="container-fluid p-0 " id="temp">
+    <div *ngIf='currentUser==undefined && globalChat==undefined' class="chat-area">
+        <div class="row m-0 text-center loading-box">
+            <div class="loader">
+                <i class="fa fa-spinner fa-pulse loading"></i>
+                <div class="loader-text">Loading in messages...</div>
+            </div>
+        </div>
+
+    </div>
 
     <div *ngIf='currentUser!==undefined && globalChat!==undefined' #scroll class="chat-area">
         <!-- <div *ngIf="true" class="notification">1 new message</div> -->
@@ -10,7 +19,8 @@
     <div class="text-bar">
         <div class="text-center"><span class="icon smile"></span></div>
         <div class="message-area">
-            <textarea [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control" name="" id="" rows="1"></textarea>
+            <input (keydown)="enter($event)" [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control" type="text">
+            <!-- <textarea (keydown)="enter($event)" [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control" rows="1"></textarea> -->
         </div>
         <div class="text-center"><i class="icon arrow" (click)="sendMessage()"></i></div>
     </div>
