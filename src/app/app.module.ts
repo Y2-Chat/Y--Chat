@@ -32,6 +32,7 @@ import { ViewService } from './core/env-set/view.service';
 import { CacheService } from './services/cache.service';
 import { AuthGuard } from './core/auth.guard';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ContactsModalComponent } from './components/contacts-modal/contacts-modal.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     GroupChatComponent,
     ProfileComponent,
     NavbarComponent,
+    ContactsModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user.model';
+import { CacheService } from '../../../../services/cache.service';
 
 @Component({
   selector: 'app-dm-chat-cards',
@@ -10,30 +11,12 @@ export class DmChatCardsComponent implements OnInit {
 
   users: User[];
 
-  constructor() { }
+  constructor(private cache: CacheService) {
+    this.users = this.cache.users;
+  }
 
   ngOnInit() {
-    // Mock users for display purposes
-    this.users = [{
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "jannie",
-      chatIds: null
-    }, {
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "sannie",
-      chatIds: null
-    }, {
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "jenevive",
-      chatIds: null
-    }]
-    // Mock users for display purposes
+
   }
 
 }

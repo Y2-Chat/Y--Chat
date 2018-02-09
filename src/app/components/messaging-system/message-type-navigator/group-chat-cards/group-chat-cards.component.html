@@ -1,7 +1,9 @@
-<div *ngFor="let user of users " class="row col-md-12 y2c-global-card" (click)="addMemberToGroup(user)">
+<div *ngFor="let user of users " class="row col-md-12 y2c-global-card" (click)="addMember(user)">
   <span class="fas fa-user card-profilepic-placeholder"></span>
   <span class="card-header">{{user.username}}</span>
 </div>
+
+<app-contacts-modal></app-contacts-modal>
 
 <div class="row col-md-12 y2c-global-card" (click)="createGroup()">
   <span class="fas fa-plus-circle card-profilepic-placeholder"></span>

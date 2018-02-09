@@ -4,12 +4,16 @@ import { DataService } from '../../../../core/data.service';
 import { Chat } from '../../../../models/chat.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { Input } from '@angular/core';
+import { group } from '@angular/core/src/animation/dsl';
+import { CacheService } from '../../../../services/cache.service';
 
 @Component({
   selector: 'app-group-chat-cards',
   templateUrl: './group-chat-cards.component.html',
   styleUrls: ['./group-chat-cards.component.css']
 })
+
 export class GroupChatCardsComponent implements OnInit {
 
   users: User[];
@@ -18,9 +22,11 @@ export class GroupChatCardsComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private afs: AngularFirestore) {
-    this.group = new Array<string>();
+    private afs: AngularFirestore,
+    private cache: CacheService) {
 
+    this.group = new Array<string>();
+    this.users = this.cache.users;
     this.chat = new Chat;
   }
 
@@ -28,31 +34,11 @@ export class GroupChatCardsComponent implements OnInit {
     this.chat.chatId = '';
     this.chat.users = [];
     this.chat.messages = [];
-
-    // Mock users for display purposes
-    // this.users = [{
-    //   uid: "",
-    //   profilePic: null,
-    //   status: "",
-    //   username: "jannie",
-    //   chatIds: null
-    // }, {
-    //   uid: "",
-    //   profilePic: null,
-    //   status: "",
-    //   username: "sannie",
-    //   chatIds: null
-    // }, {
-    //   uid: "",
-    //   profilePic: null,
-    //   status: "",
-    //   username: "jenevive",
-    //   chatIds: null
-    // }]
-    // Mock users for display purposes
   }
 
   createGroup() {
+    console.log("Create:")
+    this.chat.users = this.group;
     this.dataService.addChat('chats', this.chat);
 
     const chat: Observable<any> = this.afs.collection('chats').snapshotChanges().map(actions => {
@@ -71,7 +57,8 @@ export class GroupChatCardsComponent implements OnInit {
     });
   }
 
-  addMembersToGroup(user) {
+  addMember(user) {
+    console.log(user.uid);
     this.group.push(user.uid);
   }
 

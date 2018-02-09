@@ -25,12 +25,12 @@ const routes: Routes = [
         path: 'messaging',
         component: MessagingSystemComponent,
         canActivate: [AuthGuard]
-    },{
-    path: ':user_id',
-    component: ProfileComponent
+    }, {
+        path: ':user_id',
+        component: ProfileComponent
     }
 ]
-    
+
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

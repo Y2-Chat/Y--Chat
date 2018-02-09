@@ -42,9 +42,10 @@ export class DataService {
       .set(Object.assign({}, data));
   }
 
-  addChat(collection: string, data: Chat) {
+  addChat(collection: string, data: any) {
     let collectionRef = this.fireStore.collection(collection);
-    collectionRef.add(data);
+
+    collectionRef.add(Object.assign({}, data));
   }
 
   getProfile(uid: string): User {
