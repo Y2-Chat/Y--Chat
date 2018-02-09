@@ -47,10 +47,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     GlobalChatCardsComponent,
     GroupChatCardsComponent,
     DmChatCardsComponent,
-    BannerComponent
-    GroupChatComponent
+    BannerComponent,
+    GroupChatComponent,
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

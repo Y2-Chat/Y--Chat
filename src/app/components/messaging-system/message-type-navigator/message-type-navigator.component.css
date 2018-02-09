@@ -1,14 +1,26 @@
-.chat-selection-tab {
+#temp {
+    height: calc(100vh - 190px);
+}
+
+.chat-toggle{
+    display: flex;
+}
+
+.chat-tab{
     text-align: center;
     font-size: 60px;
     display: block;
+}
+
+.chat-tab:hover{
+    cursor: pointer;
+}
+
+.chat-selection-tab {
     background-color: #2374AB;
 }
 
 .chat-selection-tab-selected {
-    text-align: center;
-    font-size: 60px;
-    display: block;
     background-color: #231651;
     color: white;
 }
@@ -16,5 +28,6 @@
 .chat-card-loader {
     background-color: #231651;
     color: white;
-    height: 545px;
+    overflow-y: scroll;
+    height: 100%;
 }
