@@ -39,7 +39,7 @@ export class DataService {
   pushData(collection: string, doc: any, data: any) {
     let collectionRef = this.fireStore.collection(collection);
     collectionRef.doc(doc)
-      .update(Object.assign({}, data));
+      .set(Object.assign({}, data));
   }
 
   addChat(collection: string, data: any) {
