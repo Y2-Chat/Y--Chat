@@ -37,7 +37,7 @@ export class DataService {
   pushData(collection: string, doc: any, data: any) {
     let collectionRef = this.fireStore.collection(collection);
     collectionRef.doc(doc)
-      .set(Object.assign({}, data));
+      .update(Object.assign({}, data));
   }
   getProfile(uid:string):User{
     let user:User;
