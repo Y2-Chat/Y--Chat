@@ -1,4 +1,3 @@
-import { DataService } from './../../core/data.service';
 import { User } from './../../models/user.model';
 import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';

@@ -16,4 +16,8 @@ export class CacheService {
     ngOninit() {
 
     }
+
+    getUsers(){
+        return this.users;
+    }
 }
