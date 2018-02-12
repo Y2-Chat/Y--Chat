@@ -1,3 +1,32 @@
+.btn-primary {
+  border: none;
+}
+
 .modal-body {
   height: calc(100vh - 195px);
+}
+
+.y2c-global-card {
+  /* border-bottom: 2px solid #FFFFFF; */
+  background-color: #231651;
+  padding: 0px;
+  color: white;
+  height: 100px;
+}
+
+.card-profilepic-placeholder {
+  font-size: 75px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.card-header {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.modal-title {
+  color: #000000;
 }
