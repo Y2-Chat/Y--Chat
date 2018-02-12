@@ -3,6 +3,7 @@ import { AuthService } from "../../core/auth.service";
 import { User } from "../../models/user.model";
 import { Router } from "@angular/router";
 import { delay } from "q";
+import { CacheService } from "../../services/cache.service";
 
 @Component({
     selector: 'app-register',
@@ -31,7 +32,8 @@ export class RegisterComponent {
 
     constructor(
         public auth: AuthService,
-        private router: Router) {
+        private router: Router,
+        private cache: CacheService) {
 
         this.user = new User;
 
@@ -52,7 +54,8 @@ export class RegisterComponent {
         } else {
             if (this.checkPasswordOnBlur() && this.checkPasswordLengthOnBlur()) {
                 this.user.username = this.username;
-                this.auth.registerUser(this.email, this.password, this.user)
+                this.auth.registerUser(this.email, this.password, this.user);
+                this.cache.user = this.user;
             } else {
 
             }
@@ -63,20 +66,6 @@ export class RegisterComponent {
         this.router.navigate(["login"]);
     }
 
-    // checkPasswordLengthOnInput() {
-
-    //     if (this.password.length > 5) {
-    //         this.invalidPasswordLength = false;
-    //         return true;
-    //     } else {
-    //         setTimeout(() => {
-    //             this.invalidPasswordLength = true;
-    //             return false;
-    //         }, 500)
-    //     }
-
-    // }
-
     checkPasswordLengthOnBlur() {
         if (this.password.length > 5) {
             this.invalidPasswordLength = false;
@@ -86,20 +75,6 @@ export class RegisterComponent {
             return false;
         }
     }
-
-    // checkPasswordOnInput() {
-
-    //     if (this.password === this.confirmPassword) {
-    //         this.invalidConfirmPassword = false;
-    //         return true;
-    //     } else {
-    //         setTimeout(() => {
-    //             this.invalidConfirmPassword = true;
-    //             return false;
-    //         }, 500)
-    //     }
-
-    // }
 
     checkPasswordOnBlur() {
         if (this.password === this.confirmPassword) {

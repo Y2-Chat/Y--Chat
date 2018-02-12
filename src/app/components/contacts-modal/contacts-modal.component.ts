@@ -21,7 +21,12 @@ export class ContactsModalComponent implements OnInit {
 
   users: User[];
   group: Array<string>;
-  groupChat: GroupChat;
+  groupChat: GroupChat = {
+    chatId: "",
+    chatName: "",
+    messages: [],
+    users: []
+  };
 
   constructor(
     private dataService: DataService,
@@ -49,30 +54,33 @@ export class ContactsModalComponent implements OnInit {
 
   //*ngif = add to groupd chat userMap[x.username] ? checked : unchecked
 
-
   checkUser(user: string) {
     this.userMap[user] = !this.userMap[user];
   }
 
   createGroup() {
-    console.log("Create:")
+    this.group.push(this.cache.user.uid);
     this.groupChat.users = this.group;
-    this.dataService.addChat('chats', this.groupChat);
 
-    const chat: Observable<any> = this.afs.collection('chats')
+    const chat: Observable<any> = this.afs.collection('group-chat')
       .snapshotChanges()
       .map(actions => {
         return actions.map(response => {
           const uid = response.payload.doc.id;
+          this.groupChat.chatId = uid;
+          this.cache.currentGroupChat.chatId = uid;
           return uid;
         });
       });
 
+    this.dataService.addChat('group-chat', this.groupChat);
     let flag = true;
+
     chat.subscribe(response => {
       response.map(element => {
         if (element.uid === this.groupChat.chatId && flag) {
         }
+        this.dataService.pushData('group-chat', this.groupChat.chatId, this.groupChat);
       });
     });
   }

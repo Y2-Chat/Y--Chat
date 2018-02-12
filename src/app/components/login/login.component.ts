@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from "../../core/auth.service";
 import { Router } from "@angular/router";
+import { CacheService } from "../../services/cache.service";
 
 @Component({
     selector: 'app-login',
@@ -14,7 +15,10 @@ export class LoginComponent {
 
     invalidPasswordLength = false;
 
-    constructor(public auth: AuthService, private router: Router) { }
+    constructor(
+        public auth: AuthService,
+        private router: Router,
+        private cache: CacheService) { }
 
     login() {
         if (this.checkPasswordLengthOnBlur) {
@@ -29,20 +33,6 @@ export class LoginComponent {
     register() {
         this.router.navigate(["register"]);
     }
-
-    // checkPasswordLengthOnInput() {
-
-    //     if (this.password.length > 5) {
-    //         this.invalidPasswordLength = false;
-    //         return true;
-    //     } else {
-    //         setTimeout(() => {
-    //             this.invalidPasswordLength = true;
-    //             return false;
-    //         }, 500)
-    //     }
-
-    // }
 
     checkPasswordLengthOnBlur() {
         if (this.password.length > 5) {
