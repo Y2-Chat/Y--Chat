@@ -1,5 +1,6 @@
 import { User } from './../../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { CacheService } from '../../../services/cache.service';
 
 @Component({
   selector: 'app-message-type-navigator',
@@ -7,15 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./message-type-navigator.component.css']
 })
 export class MessageTypeNavigatorComponent implements OnInit {
-  @Input() allUsers:User[];
+
+  users: User[];
   selected: string = "global";
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  switchTab(selected:string) {
+  switchTab(selected: string) {
     this.selected = selected;
   }
 

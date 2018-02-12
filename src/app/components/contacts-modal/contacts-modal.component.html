@@ -1,0 +1,43 @@
+<button type="button" class="row col-md-12 y2c-global-card btn btn-primary m-0" data-toggle="modal" data-target="#exampleModal">
+  <span class="fas fa-plus-circle card-profilepic-placeholder"></span>
+  <span class="card-header">New Group chat</span>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select contacts:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div *ngIf="step === 1" class="modal-body">
+        <label>Group Name:</label>
+        <input class="form-control" type="text" [(ngModel)]="groupName" />
+        <button class="btn btn-primary" (click)="setGroupName()">Submit</button>
+      </div>
+
+      <div *ngIf="step === 2" class="modal-body">
+
+        <div *ngFor="let user of cache.getUsers() " class="container-fluid p-0 y2c-global-card" (click)="addMember(user)">
+          <div class="col-md-2 profile-pic">
+            <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
+          </div>
+          <div class="col-md-10 user-text">
+            <div class="username">{{user.username}}</div>
+            <div class="status">{{user.status}}</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button *ngIf="step === 2 && group.length > 2" type="button" class="btn btn-primary" data-dismiss="modal" (click)="createGroup()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

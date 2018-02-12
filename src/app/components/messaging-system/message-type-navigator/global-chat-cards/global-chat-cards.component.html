@@ -1,4 +1,4 @@
-<div *ngFor="let user of users " class="container-fluid p-0 y2c-global-card">
+<div *ngFor="let user of cache.getUsers() " class="container-fluid p-0 y2c-global-card">
     <div class="col-md-2 profile-pic">
         <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
     </div>

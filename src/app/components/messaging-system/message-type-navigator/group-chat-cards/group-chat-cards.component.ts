@@ -1,39 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/user.model';
+import { DataService } from '../../../../core/data.service';
+import { Chat } from '../../../../models/chat.model';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { Input } from '@angular/core';
+import { group } from '@angular/core/src/animation/dsl';
+import { CacheService } from '../../../../services/cache.service';
+import { GroupChat } from '../../../../models/groupChat.model';
 
 @Component({
   selector: 'app-group-chat-cards',
   templateUrl: './group-chat-cards.component.html',
   styleUrls: ['./group-chat-cards.component.css']
 })
+
 export class GroupChatCardsComponent implements OnInit {
 
-  users: User[];
+  group: Array<string>;
+  groupChat: GroupChat;
 
-  constructor() { }
+  constructor(protected cache: CacheService) {
+
+    this.groupChat = new GroupChat;
+  }
 
   ngOnInit() {
-    // Mock users for display purposes
-    this.users = [{
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "jannie",
-      chatIds: null
-    }, {
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "sannie",
-      chatIds: null
-    }, {
-      uid: "",
-      profilePic: null,
-      status: "",
-      username: "jenevive",
-      chatIds: null
-    }]
-    // Mock users for display purposes
   }
 
 }

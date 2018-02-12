@@ -1,8 +1,7 @@
-<div *ngFor="let u of users " class="row col-md-12 y2c-global-card">
-    <span class="fas fa-user card-profilepic-placeholder"></span>
-    <span class="card-header">{{u.username}}</span>
+<div *ngFor="let chat of cache.getGroupChats() " class="row col-md-12 y2c-global-card">
+  <div class="col-md-10 user-text">
+    <div class="username">{{chat.chatName}}</div>
   </div>
-  <div class="row col-md-12 y2c-global-card">
-    <span class="fas fa-plus-circle card-profilepic-placeholder"></span>
-    <span class="card-header">Start New Group chat</span>
-  </div>
+</div>
+
+<app-contacts-modal></app-contacts-modal>
