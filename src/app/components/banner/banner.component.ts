@@ -1,3 +1,4 @@
+import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,20 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
+  // authService: AuthService
+  // dropDownVisibility: boolean = false;
 
-  dropDownVisibility: boolean = false;
-
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  switchVisibilty(){
-    if(this.dropDownVisibility === true){
-      this.dropDownVisibility = false;
-    } else if(this.dropDownVisibility===false){
-      this.dropDownVisibility = true;
-    }
+  logout(){
+    this.authService.logout();
   }
+
+  // switchVisibilty(){
+  //   if(this.dropDownVisibility === true){
+  //     this.dropDownVisibility = false;
+  //   } else if(this.dropDownVisibility===false){
+  //     this.dropDownVisibility = true;
+  //   }
+  // }
 
 }
