@@ -74,7 +74,9 @@
 }
 
 #temp {
+
     height: calc(100vh - 154px);
+
 }
 
 .y2c-global-card {
@@ -121,6 +123,7 @@
 .status {
     font-size: 14px;
     font-weight: 300;
+
 }
 
 .chat-area::-webkit-scrollbar {
@@ -132,4 +135,5 @@
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: rgb(66, 167, 255);
+
 }
