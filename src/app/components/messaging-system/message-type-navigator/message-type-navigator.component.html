@@ -15,9 +15,8 @@
   </div>
 
     <div class=" col-md-12 p-0 chat-card-loader">
-        <app-global-chat-cards *ngIf="selected =='global'" [users]='allUsers'></app-global-chat-cards>
+        <app-global-chat-cards *ngIf="selected =='global'"></app-global-chat-cards>
         <app-dm-chat-cards *ngIf="selected=='dm'"></app-dm-chat-cards>
         <app-group-chat-cards *ngIf="selected=='group'"></app-group-chat-cards>
     </div>
   </div>
-</div>
