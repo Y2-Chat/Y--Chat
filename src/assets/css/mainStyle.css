@@ -1,122 +1,139 @@
 .message-span {
-  width: 100%;
-  margin: 20px 0px;
+    width: 100%;
+    margin: 20px 0px;
 }
 
 .chat-area {
-  height: 100%;
-  overflow-y: scroll;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .notification {
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 20px;
-  margin: 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 10px;
 }
 
 .text-bar {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background: rgb(204, 204, 204);
-  padding: 8px;
-  display: flex;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgb(204, 204, 204);
+    padding: 8px;
+    display: flex;
 }
 
 .message-area {
-  width: 100%;
+    width: 100%;
 }
 
 .message {
-  width: 100%;
-  border-radius: 20px;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .icon {
-  margin: 10px;
-  font-family: "Font Awesome 5 Free";
-  font-size: 25px;
+    margin: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-size: 25px;
 }
 
 .icon:hover {
-  cursor: pointer;
-  color: rgb(66, 167, 255)
+    cursor: pointer;
+    color: rgb(66, 167, 255)
 }
 
 .smile::before {
-  font-weight: 300;
-  content: "\f118";
+    font-weight: 300;
+    content: "\f118";
 }
 
 .arrow::before {
-  font-weight: 900;
-  content: "\f124";
+    font-weight: 900;
+    content: "\f124";
 }
 
 .loading-box {
-  display: flex;
-  height: 100%;
+    display: flex;
+    height: 100%;
 }
 
 .loader {
-  margin: auto;
+    margin: auto;
 }
 
 .loading {
-  font-size: 50px;
-  margin-top: auto;
-  margin-bottom: auto
+    font-size: 50px;
+    margin-top: auto;
+    margin-bottom: auto
 }
 
 .loader-text {
-  padding-top: 10px
+    padding-top: 10px
 }
 
 #temp {
-  height: calc(100vh - 155px);
+
+    height: calc(100vh - 154px);
+
 }
 
 .y2c-global-card {
-  border-bottom-color: #fff;
-  border-bottom-width: 2px;
-  background-color: #231651;
-  padding: 0px;
-  color: white;
-  height: 80px;
-  display: flex
+    border-bottom-color: #fff;
+    border-bottom-width: 2px;
+    background-color: #231651;
+    padding: 0px;
+    color: white;
+    height: 80px;
+    display: flex
 }
 
 .profile-pic {
-  display: flex;
+    display: flex;
 }
 
 .y2c-global-card:hover {
-  background-color: #301f6e;
-  cursor: pointer;
+    background-color: #301f6e;
+    cursor: pointer;
 }
 
 .pic {
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 50px;
+    min-height: 50px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
 
 .user-text {
-  padding: 10px;
-  margin-left: 10px;
-  margin-top: auto;
-  margin-bottom: auto;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .username {
-  font-size: 16px;
-  font-weight: 900;
+    font-size: 16px;
+    font-weight: 900;
 }
 
 .status {
-  font-size: 14px;
-  font-weight: 300;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.chat-area::-webkit-scrollbar {
+    width: 12px;
+    background-color: #ffffff;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgb(66, 167, 255);
+
 }

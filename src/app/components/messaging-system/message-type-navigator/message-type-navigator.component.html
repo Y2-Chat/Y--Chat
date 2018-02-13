@@ -1,18 +1,18 @@
 <div class="container-fluid p-0" id="temp">
-  <div class="chat-toggle">
-    <div class="col-md-4 chat-tab" [ngClass]="selected == 'global'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('global')">
-      <span class="fas fa-globe"></span>
-    </div>
+    <div class="chat-toggle">
+        <div class="col-md-4 chat-tab" [ngClass]="selected == 'global'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('global')">
+            <span class="fas fa-globe"></span>
+        </div>
 
-    <div class="col-md-4 chat-tab" [ngClass]="selected == 'dm'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('dm')">
-      <span class="fas fa-user"></span>
-    </div>
+        <div class="col-md-4 chat-tab" [ngClass]="selected == 'dm'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('dm')">
+            <span class="fas fa-user"></span>
+        </div>
 
-    <div class="col-md-4 chat-tab" [ngClass]="selected == 'group'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('group')">
-      <span class="fas fa-users"></span>
+        <div class="col-md-4 chat-tab" [ngClass]="selected == 'group'? 'chat-selection-tab-selected' : 'chat-selection-tab'" (click)="switchTab('group')">
+            <span class="fas fa-users"></span>
 
+        </div>
     </div>
-  </div>
 
     <div class=" col-md-12 p-0 chat-card-loader">
         <app-global-chat-cards *ngIf="selected =='global'"></app-global-chat-cards>

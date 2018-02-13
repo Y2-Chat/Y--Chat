@@ -1,55 +1,58 @@
 <!--Start register-->
 <div class="container-fluid">
-  <div id="display" class="row">
-    <span class="col-md-3 col-sm-1 col-xs-12">
+    <div id="display" class="row">
+        <span class="col-md-3 col-sm-1 col-xs-12"> </span>
 
-    </span>
-    <div id="login-panel" class="col-md-6 col-sm-10 col-xs-12">
-      <div id="header">
-        <h2>Welcome to:</h2>
-        <h1>Y2-Chat</h1>
-      </div>
+        <div id="login-panel" class="col-md-6 col-sm-10 col-xs-12">
+            <div id="header">
+                <h2>Welcome to:</h2>
+                <h1>Y2-Chat</h1>
+            </div>
 
-      <div class="col-md-12 line-spacing">
-        <a id="link" (click)="register()">Not yet a user?</a>
-      </div>
+            <div class="col-md-12 line-spacing">
+                <a id="link" (click)="register()">Not yet a user?</a>
+            </div>
 
-      <!--Email-->
-      <div class="col-md-12 row line-spacing no-margin-sides">
-        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
-          <label class="middel-text">Email:</label>
+            <form [formGroup]='form'>
+                <!--Email-->
+                <div class="col-md-12 row line-spacing no-margin-sides">
+                    <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+                        <label class="middel-text">Email:</label>
+                    </div>
+                    <input class="form-control col-md-9 col-sm-9 col-xs-12" formControlName="emailAddress" type="email" [(ngModel)]="email" />
+                    <div class="error" *ngIf="emailValidator.touched && emailValidator.invalid">
+                        <div *ngIf="emailValidator.errors.email">
+                            Please enter a <strong>valid</strong> email address.
+                        </div>
+                    </div>
+                </div>
+
+                <!--Password-->
+                <div class="col-md-12 row no-margin-sides">
+                    <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
+                        <label class="middel-text">Password:</label>
+                    </div>
+                    <input class="form-control col-md-9 col-sm-9 col-xs-12" formControlName="passwrd" type="password" [(ngModel)]="password" />
+                    <div class="error" *ngIf="passwordValidator.touched && passwordValidator.invalid">
+                        <div *ngIf="passwordValidator.errors.required">
+                            Password is a <strong>required</strong> field.
+                        </div>
+                        <div *ngIf="passwordValidator.errors.minlength">
+                            Password requires a minimum of {{passwordValidator.errors.minlength.requiredLength}} characters.
+                        </div>
+                    </div>
+                </div>
+
+                <span class="col-md-3 col-sm-1 col-xs-12"> </span>
+
+                <div class="col-md-12 text-center">
+                    <button [disabled]="form.invalid" (click)="login()">Login</button>
+                    <button [disabled]="form.invalid" (click)="auth.googleLogin()"><img src="http://pngimg.com/uploads/google/google_PNG19630.png" style="width:15px;height:15px" alt="Google Logo"  class="google-img">Login With Google</button>
+                </div>
+
+            </form>
+
         </div>
-        <input class="form-control col-md-9 col-sm-9 col-xs-12" type="email" [(ngModel)]="email" />
-      </div>
 
-      <!--Password-->
-      <div [ngClass]="!invalidPasswordLength ? 'line-spacing' : '' " class="col-md-12 row no-margin-sides">
-        <div class="display-flex col-md-3 col-sm-3 col-xs-12 no-padding">
-          <label class="middel-text">Password:</label>
-        </div>
-        <input [ngClass]="invalidPasswordLength ? 'invalid' : ''" class="form-control col-md-9 col-sm-9 col-xs-12" type="password"
-          [(ngModel)]="password"  (blur)="checkPasswordLengthOnBlur()" />
-      </div>
-
-      <!-- (input)="checkPasswordLengthOnInput()" -->
-
-      <div *ngIf="invalidPasswordLength" class="col-md-12 row line-spacing no-margin-sides error">
-        <span class="col-md-3 col-sm-3 col-xs-12"></span>
-        <div class="col-md-9 col-sm-9 col-xs-12 no-padding">
-          <label class="middel-text">*Passwords must be at least 6 characters long.</label>
-        </div>
-      </div>
-
-      <div class="col-md-12 text-center">
-        <button (click)="login()">Login</button>
-        <button (click)="auth.googleLogin()">
-          <i class="fa fa-google"></i>Login With Google
-        </button>
-      </div>
     </div>
-
-    <span class="col-md-3 col-sm-1 col-xs-12">
-
-    </span>
-  </div>
 </div>
