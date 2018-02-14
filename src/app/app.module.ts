@@ -58,6 +58,7 @@ import { ContactsModalComponent } from './components/contacts-modal/contacts-mod
     BrowserModule,
     AngularFireModule.initializeApp(environment.firestore),
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [AuthService,
