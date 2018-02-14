@@ -21,11 +21,15 @@ export class GroupChatCardsComponent implements OnInit {
   groupChat: GroupChat;
 
   constructor(protected cache: CacheService) {
-
     this.groupChat = new GroupChat;
   }
 
   ngOnInit() {
   }
 
+  setChat(chat) {
+    this.cache.currentGroupChat = chat;
+    console.log('set to:', chat);
+    console.log('chat is:', this.cache.currentGroupChat);
+  }
 }

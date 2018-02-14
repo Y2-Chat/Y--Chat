@@ -1,4 +1,4 @@
-<div *ngFor="let chat of cache.getGroupChats() " class="row col-md-12 y2c-global-card">
+<div *ngFor="let chat of cache.getGroupChats() " class="row col-md-12 y2c-global-card" (click)="setChat(chat)">
   <div class="col-md-10 user-text">
     <div class="username">{{chat.chatName}}</div>
   </div>

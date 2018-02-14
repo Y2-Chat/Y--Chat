@@ -7,15 +7,17 @@ import { GroupChat } from "../models/groupChat.model";
 @Injectable()
 export class CacheService {
 
+    currentGroupChat: GroupChat;
+    // = new GroupChat;
     users: User[];
     user: User;
 
     groupChats: GroupChat[];
 
     constructor() {
-        this.users = new Array<User>();
-        this.groupChats = new Array<GroupChat>();
-        this.user = new User;
+        // this.users = new Array<User>();
+        // this.groupChats = new Array<GroupChat>();
+        // this.user = new User;
     }
 
     ngOninit() {

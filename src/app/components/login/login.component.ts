@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from "@angular/core";
 import { AuthService } from "../../core/auth.service";
 import { Router } from "@angular/router";
+import { CacheService } from "../../services/cache.service";
 
 
 
@@ -18,7 +19,11 @@ export class LoginComponent {
 
     invalidPasswordLength = false;
 
-    constructor(public auth: AuthService, private router: Router, fb:FormBuilder) { 
+    constructor(
+        public auth: AuthService,
+        private router: Router,
+        private cache: CacheService,
+      fb:FormBuilder) { 
         this.form = fb.group({
             emailAddress :["",[Validators.required, Validators.email]],
             passwrd:["",[Validators.required,Validators.minLength(6)]]
@@ -43,6 +48,16 @@ export class LoginComponent {
 
     register() {
         this.router.navigate(["register"]);
+    }
+
+    checkPasswordLengthOnBlur() {
+        if (this.password.length > 5) {
+            this.invalidPasswordLength = false;
+            return true;
+        } else {
+            this.invalidPasswordLength = true;
+            return false;
+        }
     }
 
 }

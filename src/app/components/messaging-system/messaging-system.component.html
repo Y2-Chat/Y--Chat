@@ -7,7 +7,8 @@
 
     </div>
     <div class="col-md-9 p-0">
-      <app-global-chat *ngIf="true" [currentUser]='currentUser'></app-global-chat>
+      <app-global-chat *ngIf="globalChat" [currentUser]='currentUser'></app-global-chat>
+      <app-group-chat *ngIf="groupChat"></app-group-chat>
     </div>
   </div>
 </div>

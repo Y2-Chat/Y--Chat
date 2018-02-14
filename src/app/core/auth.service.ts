@@ -80,20 +80,16 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(success => {
         this.dataService.getData('users', 'uid', '==', success.uid).subscribe(response => {
-          this.cacheService.user = response['0'];
+          this.cacheService.user = response['0'] as User;
+          console.log("Logged in as: " + this.cacheService.user.uid);
           this.successNavigate();
         })
       }).catch(error => {
         console.log(error.message)
       })
   }
-
   //End Login
 
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  //   this.router.navigate(["/login"]);
-  // }
   getCurrentUser() {
     return this.dataService.getData('users', 'uid', '==', this.afAuth.auth.currentUser.uid);
   }
@@ -104,7 +100,7 @@ export class AuthService {
         user.uid = this.afAuth.auth.currentUser.uid;
         this.registerToGlobal(user);
         this.dataService.pushData("users", this.afAuth.auth.currentUser.uid, user);
-
+        this.cacheService.user.uid = user.uid;
         this.successNavigate();
       }).catch(error => {
         if (error === "The email address is already in use by another account.") {
