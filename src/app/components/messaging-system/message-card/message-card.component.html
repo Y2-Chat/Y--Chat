@@ -1,8 +1,14 @@
 <div *ngIf='sender!==undefined' class="text-bubble" [ngClass]="message.senderUid==currentUserID?'sender':'receiver'">
-    <div class="message-header">
-        <a (click)="profile(sender.uid)"><strong class="username">{{sender.username}}</strong> </a>
-        <div class="time-stamp"><small><strong>{{message.time|date:'shortTime'}}</strong></small></div>
+  <div class="message-header">
+    <a (click)="profile(sender.uid)">
+      <strong class="username">{{sender.username}}</strong>
+    </a>
+    <div class="time-stamp">
+      <small>
+        <strong>{{message.time|date:'shortTime'}}</strong>
+      </small>
     </div>
+  </div>
 
-    <div class="body">{{message.body}}</div>
+  <div class="body">{{message.body}}</div>
 </div>

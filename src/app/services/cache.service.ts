@@ -8,11 +8,10 @@ import { GroupChat } from "../models/groupChat.model";
 export class CacheService {
 
     currentGroupChat: GroupChat;
-    // = new GroupChat;
     users: User[];
     user: User;
-
     groupChats: GroupChat[];
+    groupSelected = false;
 
     constructor() {
         // this.users = new Array<User>();

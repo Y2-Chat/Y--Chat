@@ -34,6 +34,7 @@ export class GroupChatCardsComponent implements OnInit {
 
   setChat(chat) {
     this.cache.currentGroupChat = chat;
+    this.cache.groupSelected = true;
   }
 
   getGroupChatData() {
