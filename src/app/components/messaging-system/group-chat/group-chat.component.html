@@ -11,7 +11,7 @@
 
   <div *ngIf='currentUser!==undefined && groupChat!==undefined' #scroll class="chat-area">
     <!-- <div *ngIf="true" class="notification">1 new message</div> -->
-    <div *ngFor="let message of currentChat.messages" class="message-span">
+    <div *ngFor="let message of cache.currentGroupChat.messages" class="message-span">
       <app-message-card [currentUserID]='currentUser.uid' [message]="message"></app-message-card>
     </div>
   </div>
