@@ -18,7 +18,7 @@ export class ContactsModalComponent implements OnInit {
   groupName = "";
 
   userMap: Map<String, Boolean> = new Map<String, Boolean>();
-
+  flag = false;
   users: User[];
   group: Array<string>;
   groupChat: GroupChat = {
@@ -36,57 +36,91 @@ export class ContactsModalComponent implements OnInit {
     this.group = new Array<string>();
     this.users = this.cache.users;
     this.groupChat = new GroupChat;
+  }
 
-    this.users = this.cache.users;
+  ngOnInit() {
+  }
+
+  reset() {
+    this.step = 1;
+    this.groupName = '';
+    this.group.splice(0)
+    this.groupChat.chatName = 'Unnamed';
+    this.groupChat.chatId = '';
+    this.groupChat.users = [];
+    this.groupChat.messages = [];
 
     for (let x of this.users) {
       this.userMap[x.username] = false;
     }
   }
 
-  ngOnInit() {
-    this.groupChat.chatName = 'Unnamed';
-    this.groupChat.chatId = '';
-    this.groupChat.users = [];
-    this.groupChat.messages = [];
-  }
-
-  checkUser(user: string) {
-    this.userMap[user] = !this.userMap[user];
-  }
-
   createGroup() {
+    this.flag = true;
+
+    this.fetchNewId().subscribe(response => {
+      response.map(element => {
+        console.log('element id', element)
+        console.log('chatid', this.groupChat.chatId);
+        console.log('flag2', this.flag)
+        if (this.flag) {
+          if ((element as string) === (this.groupChat.chatId as string)) {
+            console.log('inside')
+            console.log("Creating", this.groupChat);
+            this.flag = false;
+            console.log('flag3', this.flag)
+            this.dataService.pushData('group-chat', this.groupChat.chatId, this.groupChat);
+          }
+        }
+
+      });
+    })
+  }
+
+  fetchNewId() {
+    //Add group creator
     this.group.push(this.cache.user.uid);
+
+    //Set all group users
     this.groupChat.users = this.group;
 
+    //Push new group
+    this.dataService.addChat('group-chat', this.groupChat);
+
+    //Get UID
     const chat: Observable<any> = this.afs.collection('group-chat')
       .snapshotChanges()
       .map(actions => {
         return actions.map(response => {
-          const uid = response.payload.doc.id;
-          this.groupChat.chatId = uid;
-          this.cache.currentGroupChat.chatId = uid;
-          return uid;
+          if (response.type === 'added' && this.flag === true) {
+            this.flag = true;
+            console.log('flag1', this.flag)
+            const uid = response.payload.doc.id;
+            this.groupChat.chatId = uid;
+            this.cache.currentGroupChat.chatId = uid;
+            return uid;
+          }
         });
       });
-
-    this.dataService.addChat('group-chat', this.groupChat);
-    let flag = true;
-
-    chat.subscribe(response => {
-      response.map(element => {
-        if (element.uid === this.groupChat.chatId && flag) {
-        }
-        this.dataService.pushData('group-chat', this.groupChat.chatId, this.groupChat);
-      });
-    });
-
-    this.step = 1;
-    this.groupName = '';
+    return chat;
   }
 
   addMember(user) {
-    this.group.push(user.uid);
+    if (this.group.length < 1) {
+      this.group.push(user.uid);
+    } else {
+      for (let i = 0; i < this.group.length; i++) {
+        if (this.group[i] === user.uid) {
+          this.group.splice(i, 1);
+          break;
+        }
+        else if (i === (this.group.length - 1)) {
+          this.group.push(user.uid);
+          break;
+        }
+      }
+    }
+    this.userMap[user.username] = !this.userMap[user.username];
   }
 
   setGroupName() {

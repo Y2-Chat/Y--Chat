@@ -1,4 +1,5 @@
-<button type="button" class="row col-md-12 y2c-global-card btn btn-primary m-0" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="row col-md-12 y2c-global-card btn btn-primary m-0" data-toggle="modal" data-target="#exampleModal"
+  (click)="reset()">
   <span class="fas fa-plus-circle card-profilepic-placeholder"></span>
   <span class="card-header">New Group chat</span>
 </button>
@@ -22,13 +23,18 @@
 
       <div *ngIf="step === 2" class="modal-body">
 
-        <div *ngFor="let user of cache.getUsers() " class="container-fluid p-0 y2c-global-card" (click)="addMember(user)">
-          <div class="col-md-2 profile-pic">
-            <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
-          </div>
-          <div class="col-md-10 user-text">
-            <div class="username">{{user.username}}</div>
-            <div class="status">{{user.status}}</div>
+        <div *ngFor="let user of cache.getUsers()" class="container-fluid p-0 " (click)="addMember(user)">
+          <div *ngIf="user.uid !== cache.user.uid" class="y2c-global-card">
+            <div class="col-md-2 profile-pic">
+              <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
+            </div>
+            <div class="col-md-8 user-text">
+              <div class="username">{{user.username}}</div>
+              <div class="status">{{user.status}}</div>
+            </div>
+            <div *ngIf="userMap[user.username]" class="check col-md-2">
+              <i class="fa fa-check"></i>
+            </div>
           </div>
         </div>
 
