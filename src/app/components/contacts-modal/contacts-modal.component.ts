@@ -37,7 +37,6 @@ export class ContactsModalComponent implements OnInit {
     this.users = this.cache.users;
     this.groupChat = new GroupChat;
 
-
     this.users = this.cache.users;
 
     for (let x of this.users) {
@@ -51,8 +50,6 @@ export class ContactsModalComponent implements OnInit {
     this.groupChat.users = [];
     this.groupChat.messages = [];
   }
-
-  //*ngif = add to groupd chat userMap[x.username] ? checked : unchecked
 
   checkUser(user: string) {
     this.userMap[user] = !this.userMap[user];
@@ -83,10 +80,12 @@ export class ContactsModalComponent implements OnInit {
         this.dataService.pushData('group-chat', this.groupChat.chatId, this.groupChat);
       });
     });
+
+    this.step = 1;
+    this.groupName = '';
   }
 
   addMember(user) {
-    console.log(user.uid);
     this.group.push(user.uid);
   }
 

@@ -4,6 +4,8 @@
 
 .modal-body {
   height: calc(100vh - 195px);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .y2c-global-card {

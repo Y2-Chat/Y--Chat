@@ -67,7 +67,6 @@ export class GroupChatComponent implements OnInit {
   getGroupChatData() {
     return this.dataService.getCollection('group-chat').map(
       response => {
-        console.log('response:', response)
         return this.groupChat = response as GroupChat[];
       }
     )
@@ -96,7 +95,6 @@ export class GroupChatComponent implements OnInit {
     }
 
     this.cache.currentGroupChat.messages.push(message);
-    console.log('before push', this.cache.currentGroupChat);
     this.dataService.pushData('group-chat', this.chatID, this.cache.currentGroupChat);
   }
 
