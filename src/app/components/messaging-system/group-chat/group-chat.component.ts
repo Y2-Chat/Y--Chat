@@ -21,42 +21,37 @@ export class GroupChatComponent implements OnInit {
   uids: any[]
   groupChat: Array<GroupChat> = new Array<GroupChat>();
   userGroups: Array<GroupChat> = new Array<GroupChat>();
-  currentChat: GroupChat;
   currentUser = this.cache.user;
 
   constructor(
-    private cache: CacheService,
+    protected cache: CacheService,
     private dataService: DataService,
     private afs: AngularFirestore) {
 
-    this.currentChat = this.cache.currentGroupChat;
-
-    if (this.currentChat.chatId === undefined) {
-      this.currentChat.chatId = '0';
-    }
-    if (this.currentChat.chatName === undefined) {
-      this.currentChat.chatName = '0';
-    }
-    if (this.currentChat.messages === undefined) {
-      this.currentChat.messages = [];
-    }
-    if (this.currentChat.users === undefined) {
-      this.currentChat.users = [];
+    if (this.cache.currentGroupChat === undefined) {
+      this.cache.currentGroupChat = {
+        chatName: '',
+        chatId: '',
+        messages: [],
+        users: []
+      }
     }
 
-    // if (this.currentChat === undefined) {
-    //   // this.currentChat = {
-    //   //   chatName: '',
-    //   //   chatId: '',
-    //   //   messages: [],
-    //   //   users: []
-    //   // }
-    // } else {
-    //   this.currentChat = this.cache.currentGroupChat;
-    // }
+    if (this.cache.currentGroupChat.chatId === undefined) {
+      this.cache.currentGroupChat.chatId = '0';
+    }
+    if (this.cache.currentGroupChat.chatName === undefined) {
+      this.cache.currentGroupChat.chatName = '0';
+    }
+    if (this.cache.currentGroupChat.messages === undefined) {
+      this.cache.currentGroupChat.messages = [];
+    }
+    if (this.cache.currentGroupChat.users === undefined) {
+      this.cache.currentGroupChat.users = [];
+    }
 
-    if (this.currentChat.messages === undefined) {
-      this.currentChat.messages = [];
+    if (this.cache.currentGroupChat.messages === undefined) {
+      this.cache.currentGroupChat.messages = [];
       this.scrollToBottom();
       this.filterGroups();
     } else {
@@ -100,12 +95,9 @@ export class GroupChatComponent implements OnInit {
       time: new Date(),
     }
 
-    // if (this.currentChat.messages === undefined) {
-    //   this.currentChat.messages = [];
-    // }
-
-    this.currentChat.messages.push(message)
-    this.dataService.pushData('group-chat', this.chatID, this.currentChat);
+    this.cache.currentGroupChat.messages.push(message);
+    console.log('before push', this.cache.currentGroupChat);
+    this.dataService.pushData('group-chat', this.chatID, this.cache.currentGroupChat);
   }
 
   ngAfterViewChecked() {
