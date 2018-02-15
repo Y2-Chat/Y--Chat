@@ -29,7 +29,6 @@ export class DataService {
   getCollection(collection: string) {
     return this.fireStore.collection(collection)
       .valueChanges().map(response => {
-        console.log(response)
         return response;
       });
   }

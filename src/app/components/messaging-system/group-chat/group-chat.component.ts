@@ -19,9 +19,6 @@ export class GroupChatComponent implements OnInit {
 
   chatID: string;
   uids: any[]
-  groupChat: Array<GroupChat> = new Array<GroupChat>();
-  userGroups: Array<GroupChat> = new Array<GroupChat>();
-  currentUser = this.cache.user;
 
   constructor(
     protected cache: CacheService,
@@ -53,36 +50,13 @@ export class GroupChatComponent implements OnInit {
     if (this.cache.currentGroupChat.messages === undefined) {
       this.cache.currentGroupChat.messages = [];
       this.scrollToBottom();
-      this.filterGroups();
     } else {
       this.scrollToBottom();
-      this.filterGroups();
     }
   }
 
   ngOnInit() {
 
-  }
-
-  getGroupChatData() {
-    return this.dataService.getCollection('group-chat').map(
-      response => {
-        console.log('response:', response)
-        return this.groupChat = response as GroupChat[];
-      }
-    )
-  }
-
-  filterGroups() {
-    this.getGroupChatData().subscribe(response => {
-      for (let x of this.groupChat) {
-        for (let i = 0; i < x.users.length; i++) {
-          if (x.users[i] === this.currentUser.uid) {
-            this.userGroups.push(x);
-          }
-        }
-      }
-    })
   }
 
   sendMessage() {
@@ -96,7 +70,6 @@ export class GroupChatComponent implements OnInit {
     }
 
     this.cache.currentGroupChat.messages.push(message);
-    console.log('before push', this.cache.currentGroupChat);
     this.dataService.pushData('group-chat', this.chatID, this.cache.currentGroupChat);
   }
 

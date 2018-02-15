@@ -12,24 +12,53 @@ import { GroupChat } from '../../../../models/groupChat.model';
 @Component({
   selector: 'app-group-chat-cards',
   templateUrl: './group-chat-cards.component.html',
-  styleUrls: ['./group-chat-cards.component.css']
+  styleUrls: ['./group-chat-cards.component.css',
+    '../../../../../assets/css/mainStyle.css']
 })
 
 export class GroupChatCardsComponent implements OnInit {
 
-  group: Array<string>;
-  groupChat: GroupChat;
+  groupChat = new Array<GroupChat>();
+  userGroups = new Array<GroupChat>()
+  currentUser = this.cache.user;
 
-  constructor(protected cache: CacheService) {
-    this.groupChat = new GroupChat;
+  constructor(
+    protected cache: CacheService,
+    private dataService: DataService) {
   }
 
   ngOnInit() {
+    console.log('init', this.userGroups)
+    this.filterGroups();
   }
 
   setChat(chat) {
     this.cache.currentGroupChat = chat;
-    console.log('set to:', chat);
-    console.log('chat is:', this.cache.currentGroupChat);
+    this.cache.groupSelected = true;
+  }
+
+  getGroupChatData() {
+    return this.dataService.getCollection('group-chat')
+      .map(response => {
+        return this.groupChat = response as GroupChat[];
+      }
+      )
+  }
+
+  filterGroups() {
+
+
+    this.getGroupChatData()
+      .subscribe(response => {
+        this.userGroups = new Array();
+        for (let x of this.groupChat) {
+          for (let i = 0; i < x.users.length; i++) {
+            if (x.users[i] === this.cache.user.uid) {
+              this.userGroups.push(x);
+              break;
+            }
+          }
+        }
+      })
   }
 }

@@ -4,6 +4,8 @@
 
 .modal-body {
   height: calc(100vh - 195px);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .y2c-global-card {
@@ -29,4 +31,17 @@
 
 .modal-title {
   color: #000000;
+}
+
+.check {
+  /* border: 1px solid #FFFFFF;
+  border-radius: 100%; */
+  display: flex;
+  /* width: 30px;
+  height: 30px; */
+}
+
+.fa-check {
+  margin: auto;
+  font-size: 20px;
 }

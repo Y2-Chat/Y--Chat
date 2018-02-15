@@ -1,10 +1,10 @@
 <div *ngFor="let user of cache.getUsers() " class="container-fluid p-0 y2c-global-card">
-    <div class="col-md-2 profile-pic">
-        <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
-    </div>
-    <div class="col-md-10 user-text">
-        <div class="username">{{user.username}}</div>
-        <div class="status">{{user.status}}</div>
-    </div>
+  <div class="col-md-2 profile-pic">
+    <img class="pic" src="{{user.profilePic}}" alt="{{user.username}}">
+  </div>
 
+  <div class="col-md-10 user-text">
+    <div class="username">{{user.username}}</div>
+    <div class="status">{{user.status}}</div>
+  </div>
 </div>

@@ -1,18 +1,16 @@
-<div class="container-fluid p-0 " id="temp">
-  <div *ngIf='currentUser==undefined && groupChat==undefined' class="chat-area">
+<div *ngIf="cache.groupSelected" class="container-fluid p-0 " id="temp">
+  <div *ngIf='cache.user==undefined && cache.currentGroupChat==undefined' class="chat-area">
     <div class="row m-0 text-center loading-box">
       <div class="loader">
         <i class="fa fa-spinner fa-pulse loading"></i>
         <div class="loader-text">Loading in messages...</div>
       </div>
     </div>
-
   </div>
 
-  <div *ngIf='currentUser!==undefined && groupChat!==undefined' #scroll class="chat-area">
-    <!-- <div *ngIf="true" class="notification">1 new message</div> -->
+  <div *ngIf='cache.user!==undefined && cache.currentGroupChat!==undefined' #scroll class="chat-area">
     <div *ngFor="let message of cache.currentGroupChat.messages" class="message-span">
-      <app-message-card [currentUserID]='currentUser.uid' [message]="message"></app-message-card>
+      <app-message-card [currentUserID]='cache.user.uid' [message]="message"></app-message-card>
     </div>
   </div>
 
@@ -23,10 +21,18 @@
     <div class="message-area">
       <input (keydown)="enter($event)" [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control"
         type="text">
-      <!-- <textarea (keydown)="enter($event)" [(ngModel)]="newMessage" placeholder="Type your message here..." class="message form-control" rows="1"></textarea> -->
     </div>
+
     <div class="text-center">
       <i class="icon arrow" (click)="sendMessage()"></i>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!cache.groupSelected">
+  <div class="row m-0 text-center loading-box">
+    <div class="loader">
+      <h1>Select a group you would like to chat with.</h1>
     </div>
   </div>
 </div>
