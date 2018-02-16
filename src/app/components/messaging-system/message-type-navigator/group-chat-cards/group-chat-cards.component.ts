@@ -7,59 +7,58 @@ import { Observable } from 'rxjs/Observable';
 import { Input } from '@angular/core';
 import { group } from '@angular/core/src/animation/dsl';
 import { CacheService } from '../../../../services/cache.service';
+import { GroupChat } from '../../../../models/groupChat.model';
 
 @Component({
   selector: 'app-group-chat-cards',
   templateUrl: './group-chat-cards.component.html',
-  styleUrls: ['./group-chat-cards.component.css']
+  styleUrls: ['./group-chat-cards.component.css',
+    '../../../../../assets/css/mainStyle.css']
 })
 
 export class GroupChatCardsComponent implements OnInit {
 
-  users: User[];
-  group: Array<string>;
-  chat: Chat;
+  groupChat = new Array<GroupChat>();
+  userGroups = new Array<GroupChat>()
+  currentUser = this.cache.user;
 
   constructor(
-    private dataService: DataService,
-    private afs: AngularFirestore,
-    private cache: CacheService) {
-
-    this.group = new Array<string>();
-    this.users = this.cache.users;
-    this.chat = new Chat;
+    protected cache: CacheService,
+    private dataService: DataService) {
   }
 
   ngOnInit() {
-    this.chat.chatId = '';
-    this.chat.users = [];
-    this.chat.messages = [];
+    console.log('init', this.userGroups)
+    this.filterGroups();
   }
 
-  createGroup() {
-    console.log("Create:")
-    this.chat.users = this.group;
-    this.dataService.addChat('chats', this.chat);
+  setChat(chat) {
+    this.cache.currentGroupChat = chat;
+    this.cache.groupSelected = true;
+  }
 
-    const chat: Observable<any> = this.afs.collection('chats').snapshotChanges().map(actions => {
-      return actions.map(response => {
-        const uid = response.payload.doc.id;
-        return uid;
-      });
-    });
+  getGroupChatData() {
+    return this.dataService.getCollection('group-chat')
+      .map(response => {
+        return this.groupChat = response as GroupChat[];
+      }
+      )
+  }
 
-    let flag = true;
-    chat.subscribe(response => {
-      response.map(element => {
-        if (element.uid === this.chat.chatId && flag) {
+  filterGroups() {
+
+
+    this.getGroupChatData()
+      .subscribe(response => {
+        this.userGroups = new Array();
+        for (let x of this.groupChat) {
+          for (let i = 0; i < x.users.length; i++) {
+            if (x.users[i] === this.cache.user.uid) {
+              this.userGroups.push(x);
+              break;
+            }
+          }
         }
-      });
-    });
+      })
   }
-
-  addMember(user) {
-    console.log(user.uid);
-    this.group.push(user.uid);
-  }
-
 }

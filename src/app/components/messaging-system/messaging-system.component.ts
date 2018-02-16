@@ -3,6 +3,8 @@ import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CacheService } from '../../services/cache.service';
 import { DataService } from '../../core/data.service';
+import { Chat } from '../../models/chat.model';
+import { GroupChat } from '../../models/groupChat.model';
 
 @Component({
   selector: 'app-messaging-system',
@@ -19,18 +21,33 @@ export class MessagingSystemComponent implements OnInit {
   currentUser: User;
   users: User[];
 
+  groupChat = false;
+  directMessage = false;
+  globalChat = true;
+
   ngOnInit() {
-    this.authServ.getCurrentUser().subscribe(user =>
-      this.currentUser = user['0']
+    this.authServ.getCurrentUser().subscribe(user => {
+      this.currentUser = user['0'];
+      this.cache.user = this.currentUser;
+    }
     );
 
+
     this.getUsers();
+    this.getGroupChats();
   }
 
   getUsers() {
     this.data.getCollection('users')
       .subscribe(users => {
         this.cache.users = users as User[];
+      })
+  }
+
+  getGroupChats() {
+    this.data.getCollection('group-chat')
+      .subscribe(groupChats => {
+        this.cache.groupChats = groupChats as GroupChat[];
       })
   }
 }

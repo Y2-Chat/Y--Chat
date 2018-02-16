@@ -18,8 +18,6 @@ export class DataService {
   profiles: Observable<User[]>;
   users: User[] = [];
 
-
-  //this.fireStore.collection('users', ref => ref.where('uid', '==', 'abc'))
   getData(collection: string, variable: string, operator: any, value: any, ) {
     return this.fireStore.collection(collection, ref =>
       ref.where(variable, operator, value))
@@ -31,7 +29,6 @@ export class DataService {
   getCollection(collection: string) {
     return this.fireStore.collection(collection)
       .valueChanges().map(response => {
-        console.log(response)
         return response;
       });
   }
@@ -44,7 +41,6 @@ export class DataService {
 
   addChat(collection: string, data: any) {
     let collectionRef = this.fireStore.collection(collection);
-
     collectionRef.add(Object.assign({}, data));
   }
 
@@ -67,5 +63,4 @@ export class DataService {
       }
     });
   }
-
 }

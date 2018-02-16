@@ -1,34 +1,46 @@
 #temp {
-    height: calc(100vh - 190px);
+  height: calc(100vh - 190px);
 }
 
-.chat-toggle{
-    display: flex;
+.chat-toggle {
+  display: flex;
 }
 
-.chat-tab{
-    text-align: center;
-    font-size: 60px;
-    display: block;
+.chat-tab {
+  text-align: center;
+  font-size: 60px;
+  display: block;
 }
 
-.chat-tab:hover{
-    cursor: pointer;
+.chat-tab:hover {
+  cursor: pointer;
 }
 
 .chat-selection-tab {
-    background-color: #2374AB;
+  background-color: #2374AB;
 }
 
 .chat-selection-tab-selected {
-    background-color: #231651;
-    color: white;
+  background-color: #231651;
+  color: white;
 }
 
 .chat-card-loader {
-    background-color: #231651;
-    color: white;
-    overflow-y: scroll;
-    height: 100%;
-    padding: 0px;
+  background-color: #231651;
+  color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
 }
+
+.chat-card-loader::-webkit-scrollbar {
+  width: 12px;
+  background-color: #27195a;
+}
+
+.chat-card-loader::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #2374AB;
+}
+
