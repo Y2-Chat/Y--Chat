@@ -10,6 +10,7 @@ export class CacheService {
     currentGroupChat: GroupChat;
     users: User[];
     user: User;
+    senderId: string;
     groupChats: GroupChat[];
     groupSelected = false;
 

@@ -4,8 +4,6 @@ import { Message } from './../../../models/message.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { ViewService } from '../../../core/env-set/view.service';
 
-
-
 @Component({
   selector: 'app-message-card',
   templateUrl: './message-card.component.html',
@@ -21,9 +19,10 @@ export class MessageCardComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.message)
-    this.dataServ.getData('users', 'uid', '==', this.message.senderUid).subscribe(
-      user => this.sender = user['0']
-    )
+    this.dataServ.getData('users', 'uid', '==', this.message.senderUid)
+      .subscribe(user => {
+        this.sender = user['0']
+      })
   }
 
   profile() {
