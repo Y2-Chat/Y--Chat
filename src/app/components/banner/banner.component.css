@@ -26,7 +26,7 @@
     border-radius: 10px;
     font-size: 17px;
     color: #000000;
-    display: none;
+    /* display: none; */
     position: absolute;
     background-color: #fff;
     width: 300px;
@@ -38,9 +38,9 @@
     right: 1px;
 }
 
-.dropdown:hover .dropdown-content {
+/* .dropdown:focus .dropdown-content {
     display: block;
-}
+} */
 
 .dropdown-pfpic{
     font-size: 100px;
@@ -62,10 +62,16 @@
 
 .dropdown-menu-button{
     width: 40px;
+    height: 40px;
     text-align: center;
     right: 20px;
     margin-top: 30px;
-
-    
     /* float: right; */
+    background-color: #231651;
+    color: white;
+    border: none;
+}
+
+.display{
+    display: block;
 }

@@ -8,6 +8,7 @@ export class CacheService {
     users: User[];
 
     user: User;
+    senderId: string;
 
     constructor() {
         this.user = new User;
